@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "clientPublicKey": "657008a612d86c4f8c43c8d46094c04aedc7dc36b2a6dbc5af168aeaf52f1750",
+  "applicationPublicKey": "abc07a64080fe578c766cb8c6e54278c84b1fd90113755e95cb24046d851967d",
+  "applicationSignature": "f79ef9ff11330cb8bb78f60b52404dd1ad60d8128cdf6363d12dd071705b398f9565a26fd020e85856e4f2634a80a9b0db76b0bd8d641644180bf101e90f1802"
+}

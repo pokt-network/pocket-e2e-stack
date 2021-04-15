@@ -1,0 +1,97 @@
+version: "3.5"
+
+# REF: https://www.cloudbooklet.com/how-to-install-nginx-and-lets-encrypt-with-docker-ubuntu-20-04/
+
+services:
+
+  gateway:
+    image: pocket-network/gateway
+    build:
+      context: ..
+      dockerfile: ./Dockerfile
+    command: npm run start:watch
+    env_file:
+      - ../.env
+    environment:
+      - WATCH=${WATCH:-true}
+      - NODE_ENV=development
+    ports:
+      - 3000:3000
+    volumes:
+      - "../src:/usr/src/gateway/src"
+      - "../dist:/usr/src/gateway/dist"
+    networks:
+      - pocket
+
+  db:
+    image: mongo:latest
+    env_file:
+      - ../.tasks.env
+    volumes: 
+      - ~/.pocket/mongodb:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - pocket
+  
+  cache:
+    image: "redis:alpine"
+    command: redis-server
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      - pocket
+
+  metricsdb:
+    image: timescale/timescaledb:2.0.2-pg12
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+      - POSTGRES_DB=gatewaydb
+    ports:
+      - 5432:5432
+    networks:
+      - pocket
+
+  poktfullnode:
+    image: poktnetwork/pocket:RC-0.5.2.9
+    user: root
+    entrypoint: /bin/sh -c "while [ 1 ]; do echo up; done;"
+    # command: ["/bin/init.sh /tmp/keyfile.json ", "&&", "pocket", "start", "--keybase=false", "--mainnet", "--datadir=/home/app/.pocket/"]
+    environment:
+      - POCKET_CORE_PASSPHRASE=${POCKET_CORE_PASSPHRASE:-"v3rys3cr3tp4ssphr4se"}
+      - POCKET_CORE_KEY=${POCKET_CORE_PRIVATE_KEY:-"v3rts3cr3tpr1v4t3k3y"}
+      - POCKET_CORE_ACCOUNT_ADDRESS=${POCKET_CORE_ACCOUNT_ADDRESS:-"4dr3ss"}
+      - GODEBUG="madvdontneed=1"
+      - POCKET_CORE_PUBLIC_KEY=${POCKET_CORE_PUBLIC_KEY:-"POCKET_CORE_PUBLIC_KEY"}
+    ports:
+      - "26656:26656"
+      - "26657:26657"
+      - "8081:8081"
+      - "26660:26660"
+    expose:
+      - "8081"
+      - "26656"
+      - "26660"
+    volumes:
+      - ./init.sh:/bin/init.sh
+      - ./config/keyfile.json:/tmp/keyfile.json
+      - ./config/config.json:/tmp/config.json
+      - ./config/chains.json:/tmp/chains.json
+      - ./config/genesis.json:/tmp/genesis.json        
+      - ./data/poktfullnode0:/home/app/.pocket/
+  
+  ipfs:
+    container_name: ipfs0
+    image: ipfs/go-ipfs:release
+    ports:
+      - "4001:4001" # ipfs swarm - expose if needed/wanted
+      - "5001:5001" # ipfs api - expose if needed/wanted
+      - "8080:8080" # ipfs gateway - expose if needed/wanted
+    volumes:
+      - ./data/ipfs0:/data/ipfs
+networks:
+  poktnet:
+    driver: overlay
