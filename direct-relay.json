@@ -1,0 +1,16 @@
+{
+    "payload": {
+        "data": {
+            "file": "./simplefile.txt"
+        },
+        "method": "POST",
+        "headers": {
+            "Abspath": "/home/heartbeat/kitchen/pocket/localnet/simplefile.txt",
+            "Content-Disposition": "form-data; name=\"file\"; file=\"simplefile.txt\"",
+            "Content-Type": "application/octet-stream"
+        }
+    },
+    "proof": {
+        "blockchain": "0142"
+    }
+}

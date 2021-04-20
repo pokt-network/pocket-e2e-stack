@@ -7,32 +7,32 @@ services:
   gateway:
     image: pocket-network/gateway
     build:
-      context: ..
+      context: ../gateway
       dockerfile: ./Dockerfile
     command: npm run start:watch
     env_file:
-      - ../.env
+      - ./.gateway.env
     environment:
-      - WATCH=${WATCH:-true}
+      - WATCH=${WATCH:-false}
       - NODE_ENV=development
+    volumes:
+      - "../gateway/src:/usr/src/gateway/src"
+      - "../gateway/dist:/usr/src/gateway/dist"
     ports:
       - 3000:3000
-    volumes:
-      - "../src:/usr/src/gateway/src"
-      - "../dist:/usr/src/gateway/dist"
     networks:
-      - pocket
+      - poktnet
 
   db:
     image: mongo:latest
     env_file:
-      - ../.tasks.env
+      - ./.db.env
     volumes: 
       - ~/.pocket/mongodb:/data/db
     ports:
       - "27017:27017"
     networks:
-      - pocket
+      - poktnet
   
   cache:
     image: "redis:alpine"
@@ -42,7 +42,7 @@ services:
     environment:
       - REDIS_REPLICATION_MODE=master
     networks:
-      - pocket
+      - poktnet
 
   metricsdb:
     image: timescale/timescaledb:2.0.2-pg12
@@ -52,20 +52,22 @@ services:
       - POSTGRES_DB=gatewaydb
     ports:
       - 5432:5432
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+      - POSTGRES_DB=gatewaydb
+    ports:
+      - 5432:5432
     networks:
-      - pocket
+      - poktnet
 
-  poktfullnode:
-    image: poktnetwork/pocket:RC-0.5.2.9
+  fullnode.pokt:
+    image: poktnetwork/pocket-core:RC-0.5.0.2
     user: root
-    entrypoint: /bin/sh -c "while [ 1 ]; do echo up; done;"
-    # command: ["/bin/init.sh /tmp/keyfile.json ", "&&", "pocket", "start", "--keybase=false", "--mainnet", "--datadir=/home/app/.pocket/"]
-    environment:
-      - POCKET_CORE_PASSPHRASE=${POCKET_CORE_PASSPHRASE:-"v3rys3cr3tp4ssphr4se"}
-      - POCKET_CORE_KEY=${POCKET_CORE_PRIVATE_KEY:-"v3rts3cr3tpr1v4t3k3y"}
-      - POCKET_CORE_ACCOUNT_ADDRESS=${POCKET_CORE_ACCOUNT_ADDRESS:-"4dr3ss"}
-      - GODEBUG="madvdontneed=1"
-      - POCKET_CORE_PUBLIC_KEY=${POCKET_CORE_PUBLIC_KEY:-"POCKET_CORE_PUBLIC_KEY"}
+    entrypoint: "/bin/sh -c"
+    # command: ["/bin/init.sh /tmp/keyfile.json", "&&", "pocket", "start", "--keybase=false", "--datadir=/home/app/.pocket/"]
+    command: "'/bin/init.sh /tmp/keyfile.json && pocket start --keybase=false --datadir=/home/app/.pocket/ --altruism'"
+    env_file:
+      - ./.fullnode.pokt.env
     ports:
       - "26656:26656"
       - "26657:26657"
@@ -76,12 +78,15 @@ services:
       - "26656"
       - "26660"
     volumes:
-      - ./init.sh:/bin/init.sh
+      - ./scripts/init.sh:/bin/init.sh
       - ./config/keyfile.json:/tmp/keyfile.json
       - ./config/config.json:/tmp/config.json
       - ./config/chains.json:/tmp/chains.json
       - ./config/genesis.json:/tmp/genesis.json        
       - ./data/poktfullnode0:/home/app/.pocket/
+      - ./data/poktfullnode0/crypto:/home/app/crypto
+    networks:
+      - poktnet
   
   ipfs:
     container_name: ipfs0
@@ -92,6 +97,9 @@ services:
       - "8080:8080" # ipfs gateway - expose if needed/wanted
     volumes:
       - ./data/ipfs0:/data/ipfs
+    networks:
+      - poktnet
+
 networks:
   poktnet:
     driver: overlay
