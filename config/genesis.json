@@ -1,6 +1,6 @@
 {
     "genesis_time": "2020-07-28T15:00:00.000000Z",
-    "chain_id": "mainnet",
+    "chain_id": "localnet",
     "consensus_params": {
         "block": {
             "max_bytes": "4000000",
@@ -30,14 +30,14 @@
             },
             "applications": [
                 {
-                    "address": "822a17f7dce350b01a5bffb6316b9d3c65f58a51",
+                    "address": "4187e3aed3d9ce89aec2519636a599d42c36521a",
                     "chains": [
-                      "0001"
+                      "0142"
                     ],
                     "jailed": false,
-                    "max_relays": "41750",
-                    "public_key": "c040a8add8ee2760aea17ae883eca7782207cda57aeb394f83c76e9b826a0e21",
-                    "staked_tokens": "25000000000",
+                    "max_relays": "1000000041750",
+                    "public_key": "50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113",
+                    "staked_tokens": "5000000000000",
                     "status": 2,
                     "unstaking_time": "2021-05-15T00:00:00Z"
                 }
@@ -57,16 +57,16 @@
                 {
                     "type": "posmint/Account",
                     "value": {
-                        "address": "822a17f7dce350b01a5bffb6316b9d3c65f58a51",
+                        "address": "4187e3aed3d9ce89aec2519636a599d42c36521a",
                         "coins": [
                             {
-                                "amount": "25000",
+                                "amount": "5000000000000",
                                 "denom": "upokt"
                             }
                         ],
                         "public_key": {
                             "type": "crypto/ed25519_public_key",
-                            "value": "c040a8add8ee2760aea17ae883eca7782207cda57aeb394f83c76e9b826a0e21"
+                            "value": "50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113"
                         }
                     }
                 }
@@ -248,14 +248,14 @@
             "prevState_validator_powers": null,
             "validators": [
                 {
-                    "address": "822a17f7dce350b01a5bffb6316b9d3c65f58a51",
-                    "public_key": "c040a8add8ee2760aea17ae883eca7782207cda57aeb394f83c76e9b826a0e21",
+                    "address": "4187e3aed3d9ce89aec2519636a599d42c36521a",
+                    "public_key": "50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113",
                     "jailed": false,
                     "status": 2,
                     "tokens": "5000000000000",
-                    "service_url": "http://localhost:26657",
+                    "service_url": "http://fullnode.pokt:26657",
                     "chains": [
-                        "0001"
+                        "0142"
                     ],
                     "unstaking_time": "2021-05-15T00:00:00Z"
                 }
@@ -270,8 +270,7 @@
                 "session_node_count": "1",
                 "proof_waiting_period": "3",
                 "supported_blockchains": [
-                    "0001",
-                    "0021"
+                    "0142"
                 ],
                 "claim_expiration": "120",
                 "replay_attack_burn_multiplier": "3",
@@ -281,4 +280,4 @@
             "claims": null
         }
     }
-}
+}  
