@@ -1,0 +1,13 @@
+version: "3.5"
+
+services:
+  pocketjs:
+    image: pocket-network/pocketjs
+    build:
+      context: ${POCKETJS_REPO_PATH}
+      dockerfile: ${CWD}/docker/Dockerfile.pocketjs
+      args:
+        TSCONFIG_FILE_PATH: ${CWD}/docker/pocketjs.tsconfig.json
+    volumes:
+      - "${POCKETJS_REPO_PATH}/src:/usr/src/pocketjs/src"
+      - "${POCKETJS_REPO_PATH}/dist:/usr/src/pocketjs/dist"

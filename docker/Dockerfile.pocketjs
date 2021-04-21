@@ -1,0 +1,27 @@
+# Check out https://hub.docker.com/_/node to select a new base image
+FROM node:10-slim
+
+# Bind to all network interfaces so that it can be mapped to the host OS
+ENV TSCONFIG_FILE_PATH=x
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+
+RUN mkdir -p /usr/src/pocketjs
+
+WORKDIR /usr/src/pocketjs
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+RUN npm install
+RUN npm install tsnodemon
+
+COPY . .
+
+COPY ${TSCONFIG_FILE_PATH} ./tsconfig.json
+
+CMD ["node_modules/.bin/tsnodemon", "-x /usr/bin/docker restart pokt-fdt-gateway"]

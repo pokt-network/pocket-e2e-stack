@@ -62,6 +62,9 @@ Afterwards, make sure you add the blockchains you are concerned with to the `blo
 GATEWAY_REPO_PATH=path docker-compose up
 ```
 
+```
+TSCONFIG_FILE_PATH=$(pwd)/docker/pocketjs.tsconfig.json POCKETJS_REPO_PATH=../../client GATEWAY_REPO_PATH=../../gateway CWD=$(pwd) docker-compose -f stacks/pokt-aps.yml up --build
+```
 
 #### Configure new accounts
 
