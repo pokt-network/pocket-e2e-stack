@@ -1,9 +1,15 @@
 ## Local Development Setup
 
+This is a local development setup that all of the pocket tools in development mode to allow for feature development, debugging and higher flexibility when dealing with the stakc
 
 #### How to use
 
+
+
+##### Launching the pocket foundation stack
+
 ##### Properly configure the gateway
+
 Make sure you are on the `dev/make-use-locally` branch on the gateway repository.
 
 Make sure you follow the proper instructions to replicate the production databse locally (_check the gateway README.md_)
@@ -57,17 +63,33 @@ Afterwards, add this entry to your applications collection in the gateway's data
 
 Afterwards, make sure you add the blockchains you are concerned with to the `blockchains` collection as you have added them to the chains.json in `config/chains.json` in this project.
 
-##### Launch everything
-```
-GATEWAY_REPO_PATH=path docker-compose up
+Then, bring the pocket foundation stack up:
+
+```bash
+$ GATEWAY_REPO_PATH=YOUR_LOCAL_GATEWAY_REPO_PATH make up-pokt-fdt 
 ```
 
-```
-TSCONFIG_FILE_PATH=$(pwd)/docker/pocketjs.tsconfig.json POCKETJS_REPO_PATH=../../client GATEWAY_REPO_PATH=../../gateway CWD=$(pwd) docker-compose -f stacks/pokt-aps.yml up --build
+Similarly, bring it down using:
+```bash
+$ GATEWAY_REPO_PATH=YOUR_LOCAL_GATEWAY_REPO_PATH make down-pokt-fdt 
 ```
 
-#### Configure new accounts
+##### Launching the pocket network stack
 
 _incoming_
 
-#### How to contribute
+##### Launching the pocket app solutions stack
+
+_incoming_
+
+##### Launching it all together
+
+_incoming_
+
+##### Configure new accounts
+
+_incoming_
+
+##### How to contribute
+
+_incoming_
