@@ -8,15 +8,15 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   gateway:
-    image: pocket-network/gateway
-    build:
-      context: ${GATEWAY_REPO_PATH}
-      dockerfile: ./Dockerfile
+    container_name: pokt-fdt-gw
     command: >
-      /bin/sh -c "
-        cd /usr/src/pocketjs \
-        npm link @pokt-network/pocket-js \
-        npm install \
+      /bin/sh -c " \
+        ls /usr/src/pocketjs && \
+        cd /usr/src/pocketjs && \
+        npm link && \
+        cd /usr/src/gateway && \
+        npm link @pokt-network/pocket-js && \
+        npm install && \
         npm run start:watch
       "
     env_file:
@@ -29,6 +29,12 @@ services:
       - 3000:3000
     networks:
       - poktnet
+    depends_on:
+      - pocketjs
+      - db
+      - cache
+      - metricsdb
+      - fullnode.pokt
 
   db:
     networks:
@@ -45,6 +51,8 @@ services:
   fullnode.pokt:
     networks:
       - poktnet
+    depends_on:
+      - ipfs
 
   ipfs:
     networks:

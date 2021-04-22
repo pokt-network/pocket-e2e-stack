@@ -2,6 +2,7 @@ version: "3.5"
 
 services:
   gateway:
+    container_name: pokt-fdt-gw
     image: pocket-network/gateway
     build:
       context: ${GATEWAY_REPO_PATH}
