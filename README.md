@@ -87,14 +87,7 @@ _incoming_
 
 ### Launching it all together
 
-
-# pocket app solutions + pocket foundation + pocket network stack
-
-:
-	 sh ./scripts/up-all.sh
-down-pokt-all:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ./scripts/down-all.sh
-
+_pocket app solutions stack (_pocket-js_) + pocket foundation stack (_gateway + dependencies_) + pocket network stack (_a localnet pocket-core fullnode_)_
 
 ```bash
 $ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make up-pokt-all 
