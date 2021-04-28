@@ -3,11 +3,12 @@ version: "3.5"
 services:
 
   fullnode.pokt:
-    image: poktnetwork/pocket-core:RC-0.5.0.2
+    # image: poktnetwork/pocket-core:RC-0.5.0.2
+    image: poktnetwork/pocket-core:RC-0.6.1
     user: root
     entrypoint: "/bin/sh -c"
     # command: ["/bin/init.sh /tmp/keyfile.json", "&&", "pocket", "start", "--keybase=false", "--datadir=/home/app/.pocket/"]
-    command: "'/bin/init.sh /tmp/keyfile.json && pocket start --keybase=false --datadir=/home/app/.pocket/ --altruism'"
+    command: "'/bin/init.sh /tmp/keyfile.json && pocket start --keybase=false --datadir=/home/app/.pocket/'"
     env_file:
       - ./.fullnode.pokt.env
     ports:

@@ -8,4 +8,3 @@ services:
       dockerfile: ${CWD}/docker/Dockerfile.pocketjs
     volumes:
       - "${POCKETJS_REPO_PATH}/src:/usr/src/pocketjs/src"
-      - "${POCKETJS_REPO_PATH}/dist:/usr/src/pocketjs/dist"

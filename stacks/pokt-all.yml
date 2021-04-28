@@ -3,7 +3,7 @@ version: "3.5"
 services:
   pocketjs:
     volumes:
-      - shared:/usr/src/pocketjs:rw
+      - shared:/usr/src/pocketjs
       - /usr/bin/docker:/usr/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock
 
@@ -11,20 +11,21 @@ services:
     container_name: pokt-fdt-gw
     command: >
       /bin/sh -c "\
+        npm config set unsafe-perm true; \
         cp -ar /usr/src/pocketjs /usr/src/compiled-pocketjs; \
         cd /usr/src/compiled-pocketjs; \
         npm link; \
         cd /usr/src/gateway; \
-        npm link /usr/src/compiled-pocketjs; \
+        npm link @pokt-network/pocket-js; \
         npm install; \
         npm run start:watch;
       "
     env_file:
       - ./.gateway.env
     volumes:
-      - "${GATEWAY_REPO_PATH}/src:/usr/src/gateway/src"
-      - "${GATEWAY_REPO_PATH}/dist:/usr/src/gateway/dist"
-      - shared:/usr/src/pocketjs:rw
+      - "${GATEWAY_REPO_PATH}/src:/usr/src/gateway/src:rw"
+      - "${GATEWAY_REPO_PATH}/dist:/usr/src/gateway/dist:rw"
+      - shared:/usr/src/pocketjs
     ports:
       - 3000:3000
     networks:

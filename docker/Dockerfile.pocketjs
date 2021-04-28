@@ -19,4 +19,4 @@ RUN npm install tsnodemon
 
 COPY . .
 
-CMD ["/bin/sh", "-c", "node_modules/.bin/tsnodemon --tsc -c tsconfig.json -x '/usr/bin/docker restart pokt-fdt-gw'"]
+CMD ["/bin/sh", "-c", "'node_modules/.bin/tsnodemon --tsc -c tsconfig.json -x \'/usr/bin/docker restart pokt-fdt-gw\''"]

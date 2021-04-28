@@ -9,4 +9,5 @@ GATEWAY_REPO_PATH=$GATEWAY_REPO_PATH docker-compose \
   -f stacks/pokt-aps.yml \
   -f stacks/pokt-all.yml \
   --project-directory ./ \
-  down
+  down \
+  -v
