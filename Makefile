@@ -4,9 +4,9 @@ POCKETJS_REPO_PATH ?= ENV_VAR_POCKETJS_REPO_PATH_NOT_PROVIDED
 
 # pocket network stack
 up-pokt-net:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) sh -c docker-compose up -f stacks/pokt-net.yml
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) sh ./scripts/up-net.sh
 down-pokt-net:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) sh -c docker-compose down -f stacks/pokt-net.yml
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) sh ./scripts/down-net.sh
 
 # pocket foundation stack
 up-pokt-fdt:

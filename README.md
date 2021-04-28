@@ -79,13 +79,24 @@ $ GATEWAY_REPO_PATH=YOUR_LOCAL_GATEWAY_REPO_PATH make down-pokt-fdt
 
 ### Launching the pocket network stack
 
-_incoming_
+```bash
+$ make up-pokt-net 
+```
+
+Similarly, bring it down using:
+```bash
+$ make down-pokt-net 
+```
 
 ### Launching the pocket app solutions stack
 
 _incoming_
 
 ### Launching it all together
+
+> Since we do not want to clutter the SDK with docker specific files, this repo is where you'd find the development docker image for pocketjs, still there are a few things you have to introduce to pocketjs to make it smoothly work:
+> 1.  update tsconfig.json to exclude `dist` directory
+> 2. create a `.dockerignore` file in pocketjs directory and ignore `./node_modules` and `./dist` directories
 
 _pocket app solutions stack (_pocket-js_) + pocket foundation stack (_gateway + dependencies_) + pocket network stack (_a localnet pocket-core fullnode_)_
 
