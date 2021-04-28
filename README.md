@@ -1,6 +1,10 @@
-## Local Development Setup
-
-This is a local development setup that all of the pocket tools in development mode to allow for feature development, debugging and higher flexibility when dealing with the stakc
+<center>
+<h1>Local Development Setup</h1>
+<img src="./assets/pocket-network-logo.png" />
+<p>This is a local development setup that all of the pocket tools in development mode to allow for feature development, debugging and higher flexibility when dealing with the stakc
+</p>
+<h2>User guide</h2>
+</center>
 
 ## How to use
 
