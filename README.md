@@ -1,12 +1,14 @@
-<center>
-<h1>Local Development Setup</h1>
-<img src="./assets/pocket-network-logo.png" />
-<p>This is a local development setup with all of the pocket tools in development mode to allow for feature development, debugging and higher flexibility when dealing with the stack.
+<h1 align="center">Local Development Setup</h1>
+<p align="center">
+    <img src="./assets/pocket-network-logo.png" />
 </p>
-<h2>User guide</h2>
-</center>
+<p align="center">This is a local development setup with all of the pocket tools in development mode to allow for feature development, debugging and higher flexibility when   dealing with the stack.
+</p>
+</br>
+<h1 align="center">User guide</h2>
 
-## How to use
+
+<h2 align="center">How to use</h2>
 
 
 
