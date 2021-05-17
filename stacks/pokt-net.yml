@@ -2,17 +2,40 @@ version: "3.5"
 
 services:
 
-  fullnode.pokt:
-    # image: poktnetwork/pocket-core:RC-0.5.0.2
+  fullnode.pokt.prod.dockerhub:
+    image: poktnetwork/pocket-core:RC-0.6.3
+    entrypoint: "/bin/sh -c"
+    command: "'/bin/init.sh /tmp/keyfile.json && pocket start --keybase=false --datadir=/home/app/.pocket/'"
+    env_file:
+      - ./.fullnode.pokt.env
+    ports:
+      - "26656:26656"
+      - "26657:26657"
+      - "8081:8081"
+      - "26660:26660"
+    expose:
+      - "8081"
+      - "26656"
+      - "26660"
+    volumes:
+      - ./scripts/init.sh:/bin/init.sh
+      - ./config/keyfile.json:/tmp/keyfile.json
+      - ./config/config.json:/tmp/config.json
+      - ./config/chains.json:/tmp/chains.json
+      - ./config/genesis.json:/tmp/genesis.json
+      - ./data/poktfullnode0:/home/app/.pocket/
+      - ./data/poktfullnode0/crypto:/home/app/crypto
+    networks:
+      - poktnet
+
+
+  fullnode.pokt.dev.local:
     image: poktnetwork/pocket-core:RC-0.6.3-latest-local
-    container_name: pokt-fdt-gw
     build:
       context: ${POCKET_CORE_REPO_PATH}
       dockerfile: ${CWD}/docker/Dockerfile.pocketcore.dev
     entrypoint: "/bin/sh -c"
     command: "'/bin/init.sh /tmp/keyfile.json && ./watch.sh'"
-    # command: "'/bin/init.sh /tmp/keyfile.json && pocket start --keybase=false --datadir=/home/app/.pocket/'"
-    # command: ["/bin/init.sh /tmp/keyfile.json", "&&", "pocket", "start", "--keybase=false", "--datadir=/home/app/.pocket/"]
     env_file:
       - ./.fullnode.pokt.env
     ports:
@@ -37,7 +60,6 @@ services:
       - "${POCKET_CORE_REPO_PATH}/x:/go/src/github.com/pokt-network/pocket-core/x"
     networks:
       - poktnet
-
 
 networks:
   poktnet:

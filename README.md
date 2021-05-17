@@ -85,18 +85,28 @@ $ GATEWAY_REPO_PATH=YOUR_LOCAL_GATEWAY_REPO_PATH make down-pokt-fdt
 
 ### Launching the pocket network stack
 
+####Launch the stack in production mode by using the dockerhub official pocket core production image (_currently at RC-0.6.3_)
 ```bash
-$ make up-pokt-net 
+$ make up-pokt-net-prod
 ```
 
 Similarly, bring it down using:
 ```bash
-$ make down-pokt-net 
+$ make down-pokt-net-prod 
+```
+#### Launch the stack in development mode by linking your local repository of pocket-core and building from it and benefiting from hot reload features 
+
+```bash
+$ POCKET_CORE_REPO_PATH=_path_to_your_local_version_of_pocket_core_ make up-pokt-net-dev
+```
+Similarly, bring it down using:
+```bash
+$ make down-pokt-net-prod 
 ```
 
 ### Launching the pocket app solutions stack
 
-_incoming_
+_Incoming_
 
 ### Launching it all together
 
@@ -106,15 +116,25 @@ _incoming_
 
 _pocket app solutions stack (_pocket-js_) + pocket foundation stack (_gateway + dependencies_) + pocket network stack (_a localnet pocket-core fullnode_)_
 
+#### Develping against a dockerhub production image of pocket-core
 ```bash
-$ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make up-pokt-all 
+$ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make up-pokt-all-prod
 ```
 
 Similarly, bring it down using:
 ```bash
-$ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make down-pokt-all  
+$ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make down-pokt-all-prod
 ```
-_incoming_
+
+#### Developing against a local version of pocket-core with hot reload
+```bash
+$ POCKET_CORE_REPO_PATH=_LOCAL_POCKET_CORE_REPO_PATH_ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make up-pokt-all-dev
+```
+
+Similarly, bring it down using:
+```bash
+$ POCKET_CORE_REPO_PATH=_LOCAL_POCKET_CORE_REPO_PATH_ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make down-pokt-all-dev
+```
 
 ### Configure new accounts
 

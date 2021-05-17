@@ -22,13 +22,13 @@ services:
     image: mongo:latest
     env_file:
       - ./.db.env
-    volumes: 
+    volumes:
       - ~/.pocket/mongodb:/data/db
     ports:
       - "27017:27017"
     networks:
       - poktnet
-  
+
   cache:
     image: "redis:alpine"
     command: redis-server
@@ -50,7 +50,7 @@ services:
     networks:
       - poktnet
 
-  fullnode.pokt:
+  fullnode.pokt.prod.dockerhub:
     networks:
       - poktnet
 
