@@ -3,3 +3,5 @@ data/ipfs0
 data/poktfullnode0
 
 workspace.code-workspace
+./**/*.swp*
+
