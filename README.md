@@ -15,7 +15,7 @@
 ### Launching the pocket foundation stack
 <br/>
 
-#### 1. Properly configure the gateway
+##### 1. Properly configure the gateway
 
 Make sure you are on the `dev/make-use-locally` branch on the gateway repository.
 
@@ -71,7 +71,7 @@ Afterwards, add this entry to your applications collection in the gateway's data
 Afterwards, make sure you add the blockchains you are concerned with to the `blockchains` collection as you have added them to the chains.json in `config/chains.json` in this project.
 
 
-#### 2. Bring the pocket foundation stack up
+##### 2. Bring the pocket foundation stack up
 
 
 ```bash
@@ -85,7 +85,7 @@ $ GATEWAY_REPO_PATH=YOUR_LOCAL_GATEWAY_REPO_PATH make down-pokt-fdt
 
 ### Launching the pocket network stack
 
-####Launch the stack in production mode by using the dockerhub official pocket core production image (_currently at RC-0.6.3_)
+##### 1. Launch the stack in production mode by using the dockerhub official pocket core production image (_currently at RC-0.6.3_)
 ```bash
 $ make up-pokt-net-prod
 ```
@@ -94,7 +94,7 @@ Similarly, bring it down using:
 ```bash
 $ make down-pokt-net-prod 
 ```
-#### Launch the stack in development mode by linking your local repository of pocket-core and building from it and benefiting from hot reload features 
+##### 2. Launch the stack in development mode by linking your local repository of pocket-core and building from it and benefiting from hot reload features 
 
 ```bash
 $ POCKET_CORE_REPO_PATH=_path_to_your_local_version_of_pocket_core_ make up-pokt-net-dev
@@ -107,6 +107,13 @@ $ make down-pokt-net-prod
 ### Launching the pocket app solutions stack
 
 _Incoming_
+```
+
+```
+
+```
+
+```
 
 ### Launching it all together
 
@@ -116,7 +123,7 @@ _Incoming_
 
 _pocket app solutions stack (_pocket-js_) + pocket foundation stack (_gateway + dependencies_) + pocket network stack (_a localnet pocket-core fullnode_)_
 
-#### Develping against a dockerhub production image of pocket-core
+##### 1. Develping against a dockerhub production image of pocket-core
 ```bash
 $ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make up-pokt-all-prod
 ```
@@ -126,7 +133,7 @@ Similarly, bring it down using:
 $ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make down-pokt-all-prod
 ```
 
-#### Developing against a local version of pocket-core with hot reload
+##### 2. Developing against a local version of pocket-core with hot reload
 ```bash
 $ POCKET_CORE_REPO_PATH=_LOCAL_POCKET_CORE_REPO_PATH_ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make up-pokt-all-dev
 ```
@@ -139,6 +146,8 @@ $ POCKET_CORE_REPO_PATH=_LOCAL_POCKET_CORE_REPO_PATH_ GATEWAY_REPO_PATH=GW_PATH 
 ### Configure new accounts
 
 _incoming_
+```
+```
 
 ### How to contribute
 
