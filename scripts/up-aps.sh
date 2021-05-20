@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 docker-compose \
-  -f stacks/pokt-net-dev.yml \
+  -f stacks/pokt-aps.yml \
   --project-directory ./ \
-  down
+  up \
+  --build \
+  --force-recreate

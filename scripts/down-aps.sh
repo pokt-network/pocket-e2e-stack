@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 docker-compose \
-  -f stacks/pokt-net.yml \
+  -f stacks/pokt-aps.yml \
   --project-directory ./ \
   down

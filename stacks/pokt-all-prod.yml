@@ -35,7 +35,7 @@ services:
       - db
       - cache
       - metricsdb
-      - fullnode.pokt
+      - fullnode.pokt.prod.dockerhub
 
   db:
     networks:

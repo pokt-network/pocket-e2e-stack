@@ -3,7 +3,7 @@
 /bin/bash $(pwd)/scripts/copy-pocket-core-scripts.sh
 
 docker-compose \
-  -f stacks/pokt-net.yml \
+  -f stacks/pokt-net-dev.yml \
   --project-directory ./ \
   up \
   --build \

@@ -9,7 +9,5 @@ GATEWAY_REPO_PATH=$GATEWAY_REPO_PATH docker-compose \
   -f stacks/pokt-fdt-prod.yml \
   -f stacks/pokt-aps.yml \
   -f stacks/pokt-all-prod.yml \
-  --project-directory ./ \
-  up \
-  --build \
-  --force-recreate
+  --project-directory $(pwd) \
+  config
