@@ -25,6 +25,9 @@ RUN apk -v --update --no-cache add \
 ENV POCKET_PATH=/go/src/github.com/pokt-network/pocket-core/
 ENV GO111MODULE="on"
 ENV EXECCOMMAND="start --keybase=false --datadir=/home/app/.pocket"
+ENV POCKET_CORE_SEEDS="notparsed"
+ENV POCKET_CORE_KEY="nokeyisparsed"
+ENV POCKET_CORE_ACCOUNT_ADDRESS="noaddressisparsed"
 
 # Create node root directory
 RUN mkdir -p ${POCKET_PATH}
@@ -59,4 +62,4 @@ RUN go get github.com/cespare/reflex
 # Install project dependencies and builds the binary
 RUN go build -tags cleveldb -o ${GOBIN}/bin/pocket ./app/cmd/pocket_core/main.go
 
-ENTRYPOINT ["/bin/sh -c", "'./watch.sh'"]
+ENTRYPOINT ["/bin/bash -c", "'POCKET_CORE_SEEDS=$POCKET_CORE_SEEDS ./watch.sh'"]

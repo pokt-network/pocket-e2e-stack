@@ -9,18 +9,17 @@ services:
     env_file:
       - ./.fullnode.pokt.env
     ports:
-      - "26656:26656"
-      - "26657:26657"
       - "8081:8081"
-      - "26660:26660"
+      - "26657:26657"
     expose:
       - "8081"
       - "26656"
-      - "26660"
+      - "26657"
+      - "46656"
     volumes:
       - ./scripts/init.sh:/bin/init.sh
       - ./config/keyfile.json:/tmp/keyfile.json
-      - ./config/config.json:/tmp/config.json
+      - ./config/config.json:/tmp/config.jsor
       - ./config/chains.json:/tmp/chains.json
       - ./config/genesis.json:/tmp/genesis.json
       - ./data/poktfullnode0:/home/app/.pocket/
