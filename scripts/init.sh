@@ -9,20 +9,26 @@ spawn sh -c "mkdir -p /home/app/.pocket/config"
 spawn sh -c "cp /tmp/*.json /home/app/.pocket/config/"
 spawn sh -c "echo $ppkfilepath"
 # spawn sh -c "pocket accounts import-armored $ppkfilepath"
-spawn sh -c "pocket accounts import-raw $env(POCKET_CORE_KEY)"
-sleep 2
 
-send -- "$env(POCKET_CORE_PASSPHRASE)\n"
-send -- "$env(POCKET_CORE_PASSPHRASE)\n"
-
+spawn pocket accounts import-raw $env(POCKET_CORE_KEY)
+sleep 1
+# send -- "$env(POCKET_CORE_PASSPHRASE)\n"
+send -- "yo\n"
 expect eof
 
 spawn sh -c "echo \"done with import raw\"";
 
 # spawn sh -c "pocket accounts set-validator `pocket accounts list | cut -d' ' -f2- `"
-spawn sh -c "pocket accounts set-validator $env(POCKET_CORE_ACCOUNT_ADDRESS)"
-sleep 5
-send -- "$env(POCKET_CORE_PASSPHRASE)\n"
+spawn pocket accounts set-validator $env(POCKET_CORE_ACCOUNT_ADDRESS)
+send -- "yo\n"
+send -- "yo\n"
+# send -- "$env(POCKET_CORE_PASSPHRASE)\n"
+# send -- "$env(POCKET_CORE_PASSPHRASE)\n"
 expect eof
-spawn sh -c "echo 'pocket core seeds: '$env(POCKET_CORE_SEEDS)'"
-spawn sh -c "echo \"done with set-validator\""
+# spawn sh -c "echo \"done with set-validator\""
+
+sleep 1
+send -- "yo\n"
+send -- "yo\n"
+expect eof
+exit

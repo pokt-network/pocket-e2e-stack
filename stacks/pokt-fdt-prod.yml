@@ -50,7 +50,15 @@ services:
     networks:
       - poktnet
 
-  fullnode.pokt.prod.dockerhub:
+  node-a:
+    networks:
+      - poktnet
+
+  node-b:
+    networks:
+      - poktnet
+
+  node-c:
     networks:
       - poktnet
 

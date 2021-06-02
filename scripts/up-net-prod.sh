@@ -4,5 +4,4 @@ docker-compose \
   -f stacks/pokt-net-prod.yml \
   --project-directory ./ \
   up \
-  --force-recreate \
-  fullnode.pokt.prod.dockerhub \
+  --force-recreate

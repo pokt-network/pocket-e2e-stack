@@ -1,32 +1,88 @@
-version: "3.5"
-
+version: "2.1"
 services:
+    node-a:
+        privileged: true
+        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+        build: netprod
+        ports:
+          - 8081:8081
+          - 26657:26657
+        expose:
+          - "8081"
+          - "26657"
+          - "26656"
+          - "46656"
+        environment:
+            POCKET_CORE_KEY: f1f0b5ab116830b0bd0f8eb24544fe90580f80940cf05bd90297826de91ebc4aec69e25c0f2d79e252c1fe0eb8ae07c3a3d8ff7bd616d736f2ded2e9167488b2
+            POCKET_CORE_SEEDS: '4b54c7ef83273bfb8cfd212ce7266de72716604d@node-b:26656
+                , 35df1afa3f2156cedaebe2e3a8e831b92c3a5ae3@node-c:26656
+                , '
+            POCKET_CORE_PASSPHRASE: yo
+            POCKET_ADDRESS: FCF719CA739DCCBC281B12BC0D671AAA7A015848
+#            GODEBUG: madvdontneed=1
+        networks:
+          - pocket
+        volumes:
+          - ./scripts/local_command.sh:/home/app/.pocket/local_command.sh
+          - ./config/chains.json:/home/app/.pocket/config/chains.json
+          - ./config/genesis.json:/home/app/.pocket/config/genesis.json
+          - ./config/config.json:/home/app/.pocket/config/config.json
 
-  fullnode.pokt.prod.dockerhub:
-    image: poktnetwork/pocket-core:RC-0.6.3
-    entrypoint: "/bin/sh -c"
-    command: "'/bin/init.sh /tmp/keyfile.json && pocket start --keybase=false --datadir=/home/app/.pocket/'"
-    env_file:
-      - ./.fullnode.pokt.env
-    ports:
-      - "8081:8081"
-      - "26657:26657"
-    expose:
-      - "8081"
-      - "26656"
-      - "26657"
-      - "46656"
-    volumes:
-      - ./scripts/init.sh:/bin/init.sh
-      - ./config/keyfile.json:/tmp/keyfile.json
-      - ./config/config.json:/tmp/config.jsor
-      - ./config/chains.json:/tmp/chains.json
-      - ./config/genesis.json:/tmp/genesis.json
-      - ./data/poktfullnode0:/home/app/.pocket/
-      - ./data/poktfullnode0/crypto:/home/app/crypto
-    networks:
-      - poktnet
+    node-b:
+        privileged: true
+        build: netprod
+        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+        ports:
+          - 8082:8081
+          - 26658:26657
+        expose:
+          - "8081"
+          - "26657"
+          - "26656"
+          - "46656"
+        environment:
+            POCKET_CORE_KEY: 5efedbbc3d3d6f82d78eaf21258c81f462f3a25268be0018d4d75e1a4787bd14eb0cf2a891382677f03c1b080ec270c693dda7a4c3ee4bcac259ad47c5fe0743
+            POCKET_CORE_SEEDS: 'fcf719ca739dccbc281b12bc0d671aaa7a015848@node-a:26656
+                , 35df1afa3f2156cedaebe2e3a8e831b92c3a5ae3@node-c:26656
+                , '
+            POCKET_CORE_PASSPHRASE: yo
+            POCKET_ADDRESS: 4B54C7EF83273BFB8CFD212CE7266DE72716604D
+#            GODEBUG: madvdontneed=1
+        networks:
+          - pocket
+        volumes:
+          - ./scripts/local_command.sh:/home/app/.pocket/local_command.sh
+          - ./config/chains.json:/home/app/.pocket/config/chains.json
+          - ./config/genesis.json:/home/app/.pocket/config/genesis.json
+          - ./config/config.json:/home/app/.pocket/config/config.json
 
+    node-c:
+        privileged: true
+        build: netprod
+        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+        ports:
+          - 8083:8081
+          - 26659:26657
+        expose:
+          - "8081"
+          - "26657"
+          - "26656"
+          - "46656"
+        environment:
+            POCKET_CORE_KEY: 91d19aec06f084ca925b15641fae86111d7e2fe4a0eed1f26b28bf6c65156b8aabc364918abe9e3966564f60baf74d7ea1c4f3efe92889de066e617989c54283
+            POCKET_CORE_SEEDS: 'fcf719ca739dccbc281b12bc0d671aaa7a015848@node-a:26656
+                , 4b54c7ef83273bfb8cfd212ce7266de72716604d@node-b:26656
+                , '
+            POCKET_CORE_PASSPHRASE: yo
+            POCKET_ADDRESS: 35DF1AFA3F2156CEDAEBE2E3A8E831B92C3A5AE3
+#            GODEBUG: madvdontneed=1
+        networks:
+          - pocket
+        volumes:
+          - ./scripts/local_command.sh:/home/app/.pocket/local_command.sh
+          - ./config/chains.json:/home/app/.pocket/config/chains.json
+          - ./config/genesis.json:/home/app/.pocket/config/genesis.json
+          - ./config/config.json:/home/app/.pocket/config/config.json
 networks:
-  poktnet:
-    driver: overlay
+    pocket:
+        driver: bridge

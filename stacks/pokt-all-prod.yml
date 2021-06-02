@@ -35,7 +35,9 @@ services:
       - db
       - cache
       - metricsdb
-      - fullnode.pokt.prod.dockerhub
+      - node-a
+      - node-b
+      - node-c
 
   db:
     networks:
@@ -49,7 +51,19 @@ services:
     networks:
       - poktnet
 
-  fullnode.pokt.prod.dockerhub:
+  node-a:
+    networks:
+      - poktnet
+    depends_on:
+      - ipfs
+
+  node-b:
+    networks:
+      - poktnet
+    depends_on:
+      - ipfs
+
+  node-c:
     networks:
       - poktnet
     depends_on:
