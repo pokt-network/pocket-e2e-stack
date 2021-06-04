@@ -97,11 +97,11 @@
             "TimeoutPrevoteDelta": 10000000000,
             "TimeoutPrecommit": 3000000000,
             "TimeoutPrecommitDelta": 10000000000,
-            "TimeoutCommit": 300000000,
+            "TimeoutCommit": 3000000000,
             "SkipTimeoutCommit": false,
             "CreateEmptyBlocks": true,
-            "CreateEmptyBlocksInterval": 300000000,
-            "PeerGossipSleepDuration": 100000000,
+            "CreateEmptyBlocksInterval": 30000000000000,
+            "PeerGossipSleepDuration": 1000000000,
             "PeerQueryMaj23SleepDuration": 2000000000
         },
         "TxIndex": {

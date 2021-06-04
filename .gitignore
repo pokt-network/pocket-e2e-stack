@@ -1,7 +1,7 @@
 data/*
 data/ipfs0
 data/poktfullnode0
-
+data/node*
 workspace.code-workspace
 *.swp*
 

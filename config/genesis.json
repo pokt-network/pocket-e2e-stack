@@ -23,7 +23,7 @@
         "session_node_count": "1",
         "proof_waiting_period": "3",
         "supported_blockchains": [
-          "0142"
+          "0011"
         ],
         "claim_expiration": "100",
         "replay_attack_burn_multiplier": "3",
@@ -48,7 +48,7 @@
           "public_key": "50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113",
           "jailed": false,
           "chains": [
-            "0142"
+            "0011"
           ],
           "max_relays": "1000000000",
           "status": 2,
@@ -60,8 +60,7 @@
           "public_key": "60f18be9678468a6c5d2e02510f5de08185926e189ca00d57fd1291a15ffb538",
           "jailed": false,
           "chains": [
-            "0011",
-            "0022"
+            "0011"
           ],
           "max_relays": "1000000000",
           "status": 2,
@@ -176,7 +175,7 @@
         "proposer_allocation": "1",
         "maximum_chains": "15",
         "max_jailed_blocks": "1000",
-        "max_evidence_age": "120000000000",
+        "max_evidence_age": "10000000000",
         "signed_blocks_window": "100",
         "min_signed_per_window": "0.500000000000000000",
         "downtime_jail_duration": "600000000000",
@@ -194,7 +193,7 @@
           "tokens": "1000000000000",
           "service_url": "http://127.0.0.1:8081",
           "chains": [
-            "0142"
+            "0011"
           ],
           "unstaking_time": "0001-01-01T00:00:00Z"
         },
@@ -206,7 +205,7 @@
           "tokens": "10000000000",
           "service_url": "http://127.0.0.1:8082",
           "chains": [
-            "0142"
+            "0011"
           ],
           "unstaking_time": "0001-01-01T00:00:00Z"
         },
@@ -218,7 +217,7 @@
           "tokens": "2000000000",
           "service_url": "http://127.0.0.1:8083",
           "chains": [
-            "0142"
+            "0011"
           ],
           "unstaking_time": "0001-01-01T00:00:00Z"
         }

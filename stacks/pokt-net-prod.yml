@@ -2,7 +2,7 @@ version: "2.1"
 services:
     node-a:
         privileged: true
-        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+        command: /usr/bin/expect /root/.pocket/local_command.sh
         build: netprod
         ports:
           - 8081:8081
@@ -23,15 +23,16 @@ services:
         networks:
           - pocket
         volumes:
-          - ./scripts/local_command.sh:/home/app/.pocket/local_command.sh
-          - ./config/chains.json:/home/app/.pocket/config/chains.json
-          - ./config/genesis.json:/home/app/.pocket/config/genesis.json
-          - ./config/config.json:/home/app/.pocket/config/config.json
+          - ./scripts/local_command.sh:/root/.pocket/local_command.sh
+          - ./config/chains.json:/root/.pocket/config/chains.json
+          - ./config/genesis.json:/root/.pocket/config/genesis.json
+          - ./config/config.json:/root/.pocket/config/config.json
+          - ./data/node-a:/root/.pocket/data
 
     node-b:
         privileged: true
         build: netprod
-        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+        command: /usr/bin/expect /root/.pocket/local_command.sh
         ports:
           - 8082:8081
           - 26658:26657
@@ -51,15 +52,15 @@ services:
         networks:
           - pocket
         volumes:
-          - ./scripts/local_command.sh:/home/app/.pocket/local_command.sh
-          - ./config/chains.json:/home/app/.pocket/config/chains.json
-          - ./config/genesis.json:/home/app/.pocket/config/genesis.json
-          - ./config/config.json:/home/app/.pocket/config/config.json
-
+          - ./scripts/local_command.sh:/root/.pocket/local_command.sh
+          - ./config/chains.json:/root/.pocket/config/chains.json
+          - ./config/genesis.json:/root/.pocket/config/genesis.json
+          - ./config/config.json:/root/.pocket/config/config.json
+          - ./data/node-b:/root/.pocket/data
     node-c:
         privileged: true
         build: netprod
-        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+        command: /usr/bin/expect /root/.pocket/local_command.sh
         ports:
           - 8083:8081
           - 26659:26657
@@ -79,10 +80,10 @@ services:
         networks:
           - pocket
         volumes:
-          - ./scripts/local_command.sh:/home/app/.pocket/local_command.sh
-          - ./config/chains.json:/home/app/.pocket/config/chains.json
-          - ./config/genesis.json:/home/app/.pocket/config/genesis.json
-          - ./config/config.json:/home/app/.pocket/config/config.json
+          - ./scripts/local_command.sh:/root/.pocket/local_command.sh
+          - ./config/chains.json:/root/.pocket/config/chains.json
+          - ./config/genesis.json:/root/.pocket/config/genesis.json
+          - ./config/config.json:/root/.pocket/config/config.json
 networks:
     pocket:
         driver: bridge
