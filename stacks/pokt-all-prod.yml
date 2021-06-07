@@ -35,9 +35,9 @@ services:
       - db
       - cache
       - metricsdb
-      - node-a
-      - node-b
-      - node-c
+      - nodea.pokt
+      - nodeb.pokt
+      - nodec.pokt
 
   db:
     networks:
@@ -51,19 +51,19 @@ services:
     networks:
       - poktnet
 
-  node-a:
+  nodea.pokt:
     networks:
       - poktnet
     depends_on:
       - ipfs
 
-  node-b:
+  nodeb.pokt:
     networks:
       - poktnet
     depends_on:
       - ipfs
 
-  node-c:
+  nodec.pokt:
     networks:
       - poktnet
     depends_on:

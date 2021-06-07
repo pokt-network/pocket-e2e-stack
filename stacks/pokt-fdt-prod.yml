@@ -50,15 +50,15 @@ services:
     networks:
       - poktnet
 
-  node-a:
+  nodea.pokt:
     networks:
       - poktnet
 
-  node-b:
+  nodeb.pokt:
     networks:
       - poktnet
 
-  node-c:
+  nodec.pokt:
     networks:
       - poktnet
 

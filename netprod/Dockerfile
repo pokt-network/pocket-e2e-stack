@@ -62,10 +62,10 @@ RUN apk add --update --no-cache expect bash
 RUN addgroup -S app \
 	&& adduser -S -G app app
 RUN mv /tmp/entrypoint.sh /home/app/ && mv /tmp/command.sh /home/app/command.sh
-# RUN  chown -R app /bin/pocket-core
+RUN chown -R app /bin/pocket-core
 RUN mkdir -p /home/app/.pocket/config
-# && chown -R app /home/app/.pocket
-# USER app
+RUN chown -R app /home/app/.pocket
+USER app
 
 # Setup the WORKDIR with app user
 ENTRYPOINT ["/home/app/entrypoint.sh"]

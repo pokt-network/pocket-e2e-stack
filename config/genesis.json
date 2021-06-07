@@ -23,7 +23,7 @@
         "session_node_count": "1",
         "proof_waiting_period": "3",
         "supported_blockchains": [
-          "0011"
+          "1111"
         ],
         "claim_expiration": "100",
         "replay_attack_burn_multiplier": "3",
@@ -48,7 +48,7 @@
           "public_key": "50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113",
           "jailed": false,
           "chains": [
-            "0011"
+            "1111"
           ],
           "max_relays": "1000000000",
           "status": 2,
@@ -60,7 +60,7 @@
           "public_key": "60f18be9678468a6c5d2e02510f5de08185926e189ca00d57fd1291a15ffb538",
           "jailed": false,
           "chains": [
-            "0011"
+            "1111"
           ],
           "max_relays": "1000000000",
           "status": 2,
@@ -191,9 +191,9 @@
           "jailed": false,
           "status": 2,
           "tokens": "1000000000000",
-          "service_url": "http://127.0.0.1:8081",
+          "service_url": "http://nodea.pokt:8081",
           "chains": [
-            "0011"
+            "1111"
           ],
           "unstaking_time": "0001-01-01T00:00:00Z"
         },
@@ -203,9 +203,9 @@
           "jailed": false,
           "status": 2,
           "tokens": "10000000000",
-          "service_url": "http://127.0.0.1:8082",
+          "service_url": "http://nodeb.pokt:8081",
           "chains": [
-            "0011"
+            "1111"
           ],
           "unstaking_time": "0001-01-01T00:00:00Z"
         },
@@ -215,9 +215,9 @@
           "jailed": false,
           "status": 2,
           "tokens": "2000000000",
-          "service_url": "http://127.0.0.1:8083",
+          "service_url": "http://nodec.pokt:8081",
           "chains": [
-            "0011"
+            "1111"
           ],
           "unstaking_time": "0001-01-01T00:00:00Z"
         }
