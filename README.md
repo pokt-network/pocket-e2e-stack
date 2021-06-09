@@ -1,6 +1,6 @@
 <h1 align="center">Local Development Setup</h1>
 <p align="center">
-    <img src="./assets/pocket-network-logo.png" />
+    <img src="https://assets.website-files.com/609e7a6f2ec5c05d866ed6d3/60a7cd2bbdce89ccfbf8ff97_POKT_Logo_S_Color.png" />
 </p>
 <p align="center">This is a local development setup with all of the pocket tools in development mode to allow for feature development, debugging and higher flexibility when   dealing with the stack.
 </p>
@@ -15,6 +15,7 @@
 ### Launching the pocket foundation stack
 <br/>
 
+
 ##### 1. Properly configure the gateway
 
 Make sure you are on the `dev/make-use-locally` branch on the gateway repository.
@@ -23,7 +24,7 @@ Make sure you follow the proper instructions to replicate the production databse
 
 Afterwards, add a new entry in the "applications" collection in the gateway's database with the values located in `config/mongo-db-app.json`
 
-Afterwards, make sure you add the blockchains you are concerned with to the `Blockchains` collection as you have added them to the chains.json in `config/chains.json` in this project.
+Then, make sure you add the blockchains you are concerned with to the `Blockchains` collection as you have added them to the chains.json in `config/chains.json` in this project.
 
 ##### 2. Bring the pocket foundation stack up
 
@@ -46,6 +47,7 @@ $ make up-pokt-net-prod
 
 Similarly, bring it down using:
 ```bash
+
 $ make down-pokt-net-prod 
 ```
 ##### 2. Launch the stack in development mode by linking your local repository of pocket-core and building from it and benefiting from hot reload features 
@@ -78,6 +80,7 @@ _Incoming_
 _pocket app solutions stack (_pocket-js_) + pocket foundation stack (_gateway + dependencies_) + pocket network stack (_a localnet pocket-core fullnode_)_
 
 ##### 1. Develping against a dockerhub production image of pocket-core
+
 ```bash
 $ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make up-pokt-all-prod
 ```
