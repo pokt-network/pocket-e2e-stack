@@ -1,0 +1,22 @@
+# Check out https://hub.docker.com/_/node to select a new base image
+FROM node:10-slim
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+
+RUN mkdir -p /usr/src/pocketjs
+
+WORKDIR /usr/src/pocketjs
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+RUN npm install
+RUN npm install tsnodemon
+
+COPY . .
+
+CMD ["/bin/sh", "-c", "'node_modules/.bin/tsnodemon --tsc -c tsconfig.json -x \'/usr/bin/docker restart pokt-fdt-gw\''"]

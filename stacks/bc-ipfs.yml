@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+  ipfs:
+    image: ipfs/go-ipfs:release
+    ports:
+      - "4001:4001" # ipfs swarm - expose if needed/wanted
+      - "5001:5001" # ipfs api - expose if needed/wanted
+      - "8080:8080" # ipfs gateway - expose if needed/wanted
+    volumes:
+      - ../data/ipfs:/data/ipfs
+    networks:
+      - poktnet
+
+networks:
+  poktnet:
+    driver: overlay
