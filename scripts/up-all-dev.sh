@@ -2,8 +2,6 @@
 
 /bin/bash $(pwd)/scripts/copy-pocket-core-scripts.sh
 
-UID=${UID} \
-GID=${GID} \
 CWD=$CWD \
 POCKET_CORE_REPO_PATH=$POCKET_CORE_REPO_PATH \
 POCKETJS_REPO_PATH=$POCKETJS_REPO_PATH \
