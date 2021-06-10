@@ -42,19 +42,19 @@ COPY . .
 # Copying deps and hot reloading/watch script
 COPY install-deps.sh ./deps.sh
 COPY watch.sh ./
+COPY entrypoint-dev.sh /tmp/
+COPY command.sh /tmp/
 
 # Run tests
 # As the tests were removed recently for the fact that most of them were broken, I commented this line,
 # It should be uncommented as soon as the new tests are available.
 #RUN go test ./tests/...
-
 RUN apk add --update --no-cache expect bash leveldb-dev
-# Create app user and add permissions
-RUN addgroup --gid 1001 -S app \
-	&& adduser --uid 1005 -S -G app app
-# RUN chown -R app /bin/pocket && mkdir -p /home/app/.pocket/config && chown -R app /home/app/.pocket
-# USER app
-
+RUN addgroup -S app \
+	&& adduser -S -G app app
+RUN mv /tmp/entrypoint-dev.sh /home/app/entrypoint.sh && mv /tmp/command.sh /home/app/command.sh
+RUN mkdir -p /home/app/.pocket/config
+RUN chown -R app /home/app/.pocket
 
 # install reflexo
 RUN go get github.com/cespare/reflex
@@ -62,4 +62,5 @@ RUN go get github.com/cespare/reflex
 # Install project dependencies and builds the binary
 RUN go build -tags cleveldb -o ${GOBIN}/bin/pocket ./app/cmd/pocket_core/main.go
 
-ENTRYPOINT ["/bin/bash -c", "'POCKET_CORE_SEEDS=$POCKET_CORE_SEEDS ./watch.sh'"]
+USER app
+ENTRYPOINT ["/home/app/entrypoint.sh"]

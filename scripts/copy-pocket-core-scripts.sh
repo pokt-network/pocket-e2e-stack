@@ -6,7 +6,14 @@ then
   exit 1;
 fi;
 
-read -p "This command will try to copy ./scripts/install-deps.sh && ./scripts/watch.sh to $POCKET_CORE_REPO_PATH, would you like to continue [Y/n]" continueScript
+read -p "This command will try to copy the following scripts to $POCKET_CORE_REPO_PATH:
+
+  - ./scripts/install-deps.sh
+  - ./scripts/watch.sh
+  - ./scripts/entrypoint-dev.sh
+  - ./scripts/command.sh
+
+  would you like to continue [Y/n]: " continueScript
 
 if [ "$continueScript" = "n" ] || [ "$continueScript" = "N" ]
 then
@@ -27,5 +34,21 @@ else
     echo "Failed to copy $CWD/watch.sh to $POCKET_CORE_REPO_PATH...";
   else
     echo "Successfully copied $CWD/watch.sh to $POCKET_CORE_REPO_PATH...";
+  fi;
+
+  cp $CWD/scripts/entrypoint-dev.sh $POCKET_CORE_REPO_PATH;
+  if [ $? -eq 1 ]
+  then
+    echo "Failed to copy $CWD/entrypoint-dev.sh to $POCKET_CORE_REPO_PATH...";
+  else
+    echo "Successfully copied $CWD/entrypoint-dev.sh to $POCKET_CORE_REPO_PATH...";
+  fi;
+
+  cp $CWD/scripts/command.sh $POCKET_CORE_REPO_PATH;
+  if [ $? -eq 1 ]
+  then
+    echo "Failed to copy $CWD/command.sh to $POCKET_CORE_REPO_PATH...";
+  else
+    echo "Successfully copied $CWD/command.sh to $POCKET_CORE_REPO_PATH...";
   fi;
 fi;

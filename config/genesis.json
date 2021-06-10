@@ -8,7 +8,7 @@
       "time_iota_ms": "1"
     },
     "evidence": {
-      "max_age": "10000"
+      "max_age": "60000000000"
     },
     "validator": {
       "pub_key_types": [
@@ -175,7 +175,7 @@
         "proposer_allocation": "1",
         "maximum_chains": "15",
         "max_jailed_blocks": "1000",
-        "max_evidence_age": "10000000000",
+        "max_evidence_age": "60000000000",
         "signed_blocks_window": "100",
         "min_signed_per_window": "0.500000000000000000",
         "downtime_jail_duration": "600000000000",

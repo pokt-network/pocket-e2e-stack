@@ -7,5 +7,4 @@ docker-compose \
   --project-directory ./ \
   up \
   --build \
-  --force-recreate \
-  fullnode.pokt.dev.local
+  --force-recreate
