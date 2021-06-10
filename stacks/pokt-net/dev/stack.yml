@@ -20,8 +20,8 @@ services:
       - "46656"
     volumes:
       - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
-      - ${CWD}/stacks/pokt-net/dev/shared/chains.json:/home/app/.pocket/config/chains.json
-      - ${CWD}/stacks/pokt-net/dev/shared/genesis.json:/home/app/.pocket/config/genesis.json
+      - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
+      - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
       - ${CWD}/stacks/pokt-net/dev/config/config.nodea.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodea.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
@@ -32,7 +32,7 @@ services:
     image: poktnetwork/pocket-core:RC-0.6.3-latest-local
     build:
       context: ${POCKET_CORE_REPO_PATH}
-      dockerfile: ${CWD}/docker/Dockerfile.pocketcore.dev
+      dockerfile: ${CWD}/docker/pokt-net/dev/Dockerfile
     command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
     env_file:
       - ${CWD}/stacks/pokt-net/dev/.nodeb.dev.env
@@ -46,8 +46,8 @@ services:
       - "46656"
     volumes:
       - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
-      - ${CWD}/stacks/pokt-net/dev/shared/chains.json:/home/app/.pocket/config/chains.json
-      - ${CWD}/stacks/pokt-net/dev/shared/genesis.json:/home/app/.pocket/config/genesis.json
+      - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
+      - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
       - ${CWD}/stacks/pokt-net/dev/config/config.nodeb.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodeb.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
@@ -58,7 +58,7 @@ services:
     image: poktnetwork/pocket-core:RC-0.6.3-latest-local
     build:
       context: ${POCKET_CORE_REPO_PATH}
-      dockerfile: ${CWD}/docker/Dockerfile.pocketcore.dev
+      dockerfile: ${CWD}/docker/pokt-net/dev/Dockerfile
     command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
     env_file:
       - ${CWD}/stacks/pokt-net/dev/.nodec.dev.env
@@ -72,8 +72,8 @@ services:
       - "46656"
     volumes:
       - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
-      - ${CWD}/stacks/pokt-net/dev/shared/chains.json:/home/app/.pocket/config/chains.json
-      - ${CWD}/stacks/pokt-net/dev/shared/genesis.json:/home/app/.pocket/config/genesis.json
+      - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
+      - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
       - ${CWD}/stacks/pokt-net/dev/config/config.nodec.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodec.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"

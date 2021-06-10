@@ -13,7 +13,7 @@ POCKET_CORE_REPO_PATH=$POCKET_CORE_REPO_PATH \
 POCKETJS_REPO_PATH=$POCKETJS_REPO_PATH \
 GATEWAY_REPO_PATH=$GATEWAY_REPO_PATH docker-compose \
   -f $CWD/stacks/pokt-net/dev/stack.yml \
-  -f $CWD/stacks/pokt-blockchains/ipfs.yml \
+  -f $CWD/stacks/pokt-blockchains/ipfs/stack.yml \
   -f $CWD/stacks/pokt-fdt/dev/stack.yml \
   -f $CWD/stacks/pokt-aps/stack.yml \
   -f $CWD/stacks/pokt-all/dev/stack.yml \

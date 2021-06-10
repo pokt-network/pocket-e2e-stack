@@ -56,19 +56,19 @@ pokt-aps-dev-down:
 # pocket app solutions + pocket foundation + pocket network stack
 # Spin up all in prod
 pokt-all-prod-config:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/prod/config.sh
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/stacks/pokt-all/prod/config.sh
 
 pokt-all-prod-up:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/prod/up.sh
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/stacks/pokt-all/prod/up.sh
 pokt-all-prod-down:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/prod/down.sh
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/stacks/pokt-all/prod/down.sh
 
 # Spin up all in dev
 pokt-all-dev-config:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/dev/config.sh
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/stacks/pokt-all/dev/config.sh
 
 pokt-all-dev-up:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/dev/up.sh
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/stacks/pokt-all/dev/up.sh
 pokt-all-dev-down:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/dev/down.sh
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/stacks/pokt-all/dev/down.sh
 

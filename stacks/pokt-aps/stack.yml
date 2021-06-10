@@ -5,6 +5,6 @@ services:
     image: pocket-network/pocketjs
     build:
       context: ${POCKETJS_REPO_PATH}
-      dockerfile: ${CWD}/docker/pokt-aps/Dockerfile
+      dockerfile: ${CWD}/docker/pokt-aps/dev/Dockerfile
     volumes:
       - "${POCKETJS_REPO_PATH}/src:/usr/src/pocketjs/src"
