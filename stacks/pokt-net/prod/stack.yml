@@ -1,0 +1,77 @@
+version: "2.1"
+services:
+    nodea.pokt:
+        privileged: true
+        build: ${CWD}/docker/pokt-net/prod
+        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+        ports:
+          - 8081:8081
+          - 26657:26657
+        expose:
+          - "8081"
+          - "26657"
+          - "26656"
+          - "46656"
+          - "53"
+        env_file:
+          - ${CWD}/stacks/pokt-net/prod/.nodea.env
+        networks:
+          - pocket
+        volumes:
+          - ${CWD}/docker/pokt-net/prod/local_command.sh:/home/app/.pocket/local_command.sh
+          - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
+          - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
+          - ${CWD}/stacks/pokt-net/prod/config/config.nodea.json:/home/app/.pocket/config/config.json
+          - ${CWD}/data/pokt-net.nodea.pokt:/home/app/.pocket/data
+
+    nodeb.pokt:
+        privileged: true
+        build: ${CWD}/docker/pokt-net/prod
+        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+        ports:
+          - 8082:8081
+          - 26658:26657
+        expose:
+          - "8081"
+          - "26657"
+          - "26656"
+          - "46656"
+          - "53"
+        env_file:
+          - ${CWD}/stacks/pokt-net/prod/.nodeb.env
+        networks:
+          - pocket
+        volumes:
+          - ${CWD}/docker/pokt-net/prod/local_command.sh:/home/app/.pocket/local_command.sh
+          - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
+          - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
+          - ${CWD}/stacks/pokt-net/prod/config/config.nodeb.json:/home/app/.pocket/config/config.json
+          - ${CWD}/data/pokt-net.nodeb.pokt:/home/app/.pocket/data
+
+    nodec.pokt:
+        privileged: true
+        build: ${CWD}/docker/pokt-net/prod
+        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+        ports:
+          - 8083:8081
+          - 26659:26657
+        expose:
+          - "8081"
+          - "26657"
+          - "26656"
+          - "46656"
+          - "53"
+        env_file:
+          - ${CWD}/stacks/pokt-net/prod/.nodec.env
+        networks:
+          - pocket
+        volumes:
+          - ${CWD}/docker/pokt-net/prod/local_command.sh:/home/app/.pocket/local_command.sh
+          - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
+          - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
+          - ${CWD}/stacks/pokt-net/prod/config/config.nodec.json:/home/app/.pocket/config/config.json
+          - ${CWD}/data/pokt-net.nodec.pokt:/home/app/.pocket/data
+
+networks:
+    pocket:
+        driver: bridge

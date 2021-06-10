@@ -1,0 +1,85 @@
+version: "3.5"
+
+services:
+
+  nodea.dev.pokt:
+    image: poktnetwork/pocket-core:RC-0.6.3-latest-local
+    build:
+      context: ${POCKET_CORE_REPO_PATH}
+      dockerfile: ${CWD}/docker/pokt-net/dev/Dockerfile
+    command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
+    env_file:
+      - ${CWD}/stacks/pokt-net/dev/.nodea.dev.env
+    ports:
+      - "8081:8081"
+      - "26657:26657"
+    expose:
+      - "8081"
+      - "26656"
+      - "26657"
+      - "46656"
+    volumes:
+      - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
+      - ${CWD}/stacks/pokt-net/dev/shared/chains.json:/home/app/.pocket/config/chains.json
+      - ${CWD}/stacks/pokt-net/dev/shared/genesis.json:/home/app/.pocket/config/genesis.json
+      - ${CWD}/stacks/pokt-net/dev/config/config.nodea.dev.json:/home/app/.pocket/config/config.json
+      - ${CWD}/data/pokt-net.nodea.pokt.dev:/home/app/.pocket/data
+      - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+    networks:
+      - poktnet
+
+  nodeb.dev.pokt:
+    image: poktnetwork/pocket-core:RC-0.6.3-latest-local
+    build:
+      context: ${POCKET_CORE_REPO_PATH}
+      dockerfile: ${CWD}/docker/Dockerfile.pocketcore.dev
+    command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
+    env_file:
+      - ${CWD}/stacks/pokt-net/dev/.nodeb.dev.env
+    ports:
+      - "8082:8081"
+      - "26658:26657"
+    expose:
+      - "8081"
+      - "26656"
+      - "26657"
+      - "46656"
+    volumes:
+      - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
+      - ${CWD}/stacks/pokt-net/dev/shared/chains.json:/home/app/.pocket/config/chains.json
+      - ${CWD}/stacks/pokt-net/dev/shared/genesis.json:/home/app/.pocket/config/genesis.json
+      - ${CWD}/stacks/pokt-net/dev/config/config.nodeb.dev.json:/home/app/.pocket/config/config.json
+      - ${CWD}/data/pokt-net.nodeb.pokt.dev:/home/app/.pocket/data
+      - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+    networks:
+      - poktnet
+
+  nodec.dev.pokt:
+    image: poktnetwork/pocket-core:RC-0.6.3-latest-local
+    build:
+      context: ${POCKET_CORE_REPO_PATH}
+      dockerfile: ${CWD}/docker/Dockerfile.pocketcore.dev
+    command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
+    env_file:
+      - ${CWD}/stacks/pokt-net/dev/.nodec.dev.env
+    ports:
+      - "8083:8081"
+      - "26659:26657"
+    expose:
+      - "8081"
+      - "26656"
+      - "26657"
+      - "46656"
+    volumes:
+      - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
+      - ${CWD}/stacks/pokt-net/dev/shared/chains.json:/home/app/.pocket/config/chains.json
+      - ${CWD}/stacks/pokt-net/dev/shared/genesis.json:/home/app/.pocket/config/genesis.json
+      - ${CWD}/stacks/pokt-net/dev/config/config.nodec.dev.json:/home/app/.pocket/config/config.json
+      - ${CWD}/data/pokt-net.nodec.pokt.dev:/home/app/.pocket/data
+      - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+    networks:
+      - poktnet
+
+networks:
+  poktnet:
+    driver: overlay

@@ -10,9 +10,29 @@
 
 <h2 align="center">How to use</h2>
 
+```bash
+bin/pkt-stack STACK_NAME ENV ACTION
+```
 
+Available stacks:
 
+- pokt-net: _Pocket Network stack as a localnet_
+- pokt-fdt: _Pocket Foundation stack: portal-ui (missing), portal-api, wallet (missing), explorer (missing)_
+- pokt-aps: _Pocket App Solutions stack: pocket-js_
+- pokt-all: _Aggregates all previous stacks into one inter-connected stack_
+
+Available envs:
+
+- prod: _Production dockerhub imges_
+- dev: _Local development mode, includes hot-reloading features, and a local net_
+
+Available actions:
+
+- up: _Spins up the stack_
+- down: _Spins down the stack_
+- config: _Prints out the resulting docker compose config file_
 ### Launching the pocket foundation stack
+
 <br/>
 
 
@@ -26,51 +46,58 @@ Afterwards, add a new entry in the "applications" collection in the gateway's da
 
 Then, make sure you add the blockchains you are concerned with to the `Blockchains` collection as you have added them to the chains.json in `config/chains.json` in this project.
 
+When you are ready, create a .env file with the following values:
+(_make sure the paths exist on your machine_)
+```
+GATEWAY_REPO_PATH=../gateway
+POCKETJS_REPO_PATH=../client
+POCKET_CORE_REPO_PATH=../core
+```
+
 ##### 2. Bring the pocket foundation stack up
 
 
+You can specify which environment you would like to run:
+
+- dev: a local live development version with hot reloading
+- prod: pulls the official production image
+
 ```bash
-$ GATEWAY_REPO_PATH=YOUR_LOCAL_GATEWAY_REPO_PATH make up-pokt-fdt 
+$ bin/pkt-stack pokt-fdt ENV up  
 ```
 
 Similarly, bring it down using:
 ```bash
-$ GATEWAY_REPO_PATH=YOUR_LOCAL_GATEWAY_REPO_PATH make down-pokt-fdt 
+$ bin/pkt-stack pokt-fdt ENV down 
 ```
 
 ### Launching the pocket network stack
 
-
 ##### 1. Launch the stack in production mode by using the dockerhub official pocket core production image (_currently at RC-0.6.3_)
+
+- dev: a local live development version with hot reloading
+- prod: pulls the official production image
+
+
 ```bash
-$ make up-pokt-net-prod
+$ bin/pkt-stack pokt-net ENV up 
 ```
 
 Similarly, bring it down using:
 ```bash
-
-$ make down-pokt-net-prod 
-```
-##### 2. Launch the stack in development mode by linking your local repository of pocket-core and building from it and benefiting from hot reload features 
-
-```bash
-$ POCKET_CORE_REPO_PATH=_path_to_your_local_version_of_pocket_core_ make up-pokt-net-dev
-```
-Similarly, bring it down using:
-```bash
-$ make down-pokt-net-prod 
+$ bin/pkt-stack pokt-net ENV down 
 ```
 
-### Launching the pocket app solutions stack
-
+##### 2. Launching the pocket app solutions stack
 
 _Incoming_
+```bash
+$ bin/pkt-stack pokt-aps ENV up
 ```
 
+Similarly, bring it down using:
 ```
-
-```
-
+$ bin/pkt-stack pokt-aps ENV down
 ```
 
 ### Launching it all together
@@ -82,34 +109,18 @@ _Incoming_
 _pocket app solutions stack (_pocket-js_) + pocket foundation stack (_gateway + dependencies_) + pocket network stack (_a localnet pocket-core fullnode_)_
 
 
+You can specify which environment you would like to run:
+
+- dev: pocket-core, portal-api and pocket-js are launched in local development and hot reloading mode allowing you to change code on the fly 
+- prod: pulls official production images 
+
 ```bash
-$ GATEWAY_REPO_PATH=GW_PATH CWD=_LOCALNET_REPO_PATH POCKETJS_REPO_PATH=POCKETJS_REPO_PATH make up-pokt-all-prod
+$ bin/pkt-stack pokt-all ENV up 
 ```
 
 Similarly, bring it down using:
 ```bash
-$ GATEWAY_REPO_PATH=GW_PATH \ 
-  CWD=_LOCALNET_REPO_PATH \
-  POCKETJS_REPO_PATH=POCKETJS_REPO_PATH \
-  make down-pokt-all-prod
-```
-
-##### 2. Developing against a local version of pocket-core with hot reload
-```bash
-$ POCKET_CORE_REPO_PATH=_LOCAL_POCKET_CORE_REPO_PATH_ \
-  GATEWAY_REPO_PATH=GW_PATH \
-  CWD=_LOCALNET_REPO_PATH \ 
-  POCKETJS_REPO_PATH=POCKETJS_REPO_PATH \
-  make up-pokt-all-dev
-```
-
-Similarly, bring it down using:
-```bash
-$ POCKET_CORE_REPO_PATH=_LOCAL_POCKET_CORE_REPO_PATH_ \
-  GATEWAY_REPO_PATH=GW_PATH \
-  CWD=_LOCALNET_REPO_PATH \
-  POCKETJS_REPO_PATH=POCKETJS_REPO_PATH \
-  make down-pokt-all-dev
+$ bin/pkt-stack pokt-all ENV down 
 ```
 
 ### Configure new accounts

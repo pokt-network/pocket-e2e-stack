@@ -1,0 +1,48 @@
+version: "3.5"
+
+services:
+  gateway:
+    container_name: pokt-fdt-gw
+    env_file:
+      - ./.gateway.env
+    volumes:
+      - "${GATEWAY_REPO_PATH}/src:/usr/src/gateway/src:rw"
+      - "${GATEWAY_REPO_PATH}/dist:/usr/src/gateway/dist:rw"
+    ports:
+      - 3000:3000
+    networks:
+      - poktnet
+    depends_on:
+      - db
+      - cache
+      - metricsdb
+      - fullnode.pokt.dev.local
+
+  db:
+    networks:
+      - poktnet
+
+  cache:
+    networks:
+      - poktnet
+
+  metricsdb:
+    networks:
+      - poktnet
+
+  fullnode.pokt.dev.local:
+    networks:
+      - poktnet
+    depends_on:
+      - ipfs
+
+  ipfs:
+    networks:
+      - poktnet
+
+networks:
+  poktnet:
+    driver: overlay
+
+volumes:
+  shared:

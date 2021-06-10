@@ -1,0 +1,67 @@
+version: "3.5"
+
+services:
+  portal-api:
+    container_name: pokt-fdt-portal-api
+    image: pocket-network/gateway
+    build:
+      context: ${GATEWAY_REPO_PATH}
+      dockerfile: ./Dockerfile
+    command: npm run start:watch
+    env_file:
+      - ${CWD}/stacks/pokt-fdt/prod/.portal-api.env
+    volumes:
+      - "${GATEWAY_REPO_PATH}/src:/usr/src/gateway/src"
+      - "${GATEWAY_REPO_PATH}/dist:/usr/src/gateway/dist"
+    ports:
+      - 3000:3000
+    networks:
+      - poktnet
+
+  db:
+    image: mongo:latest
+    env_file:
+      - ${CWD}/stacks/pokt-fdt/prod/.db.env
+    volumes:
+      - ~/.pocket/mongodb:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - poktnet
+
+  cache:
+    image: "redis:alpine"
+    command: redis-server
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      - poktnet
+
+  metricsdb:
+    image: timescale/timescaledb:2.0.2-pg12
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgpassword
+      - POSTGRES_DB=gatewaydb
+    ports:
+      - 5432:5432
+    networks:
+      - poktnet
+
+  nodea.pokt:
+    networks:
+      - poktnet
+
+  nodeb.pokt:
+    networks:
+      - poktnet
+
+  nodec.pokt:
+    networks:
+      - poktnet
+
+networks:
+  poktnet:
+    driver: overlay

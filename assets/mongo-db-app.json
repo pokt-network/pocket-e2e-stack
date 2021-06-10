@@ -1,0 +1,39 @@
+{
+    "id": "607d9f3064c40bc97ff5cb81",
+    "name": "localnet-app",
+    "owner": "pocket-foundation",
+    "url": "https://pokt.network",
+    "freeTier": true,
+    "publicPocketAccount": {
+        "address": "83ba9396eb28773717f8033e8de75ee0cd7faa12",
+        "publicKey": "ee54c980bb6d83c0b314b3f53fd5e25377b20f847f6d05c535e3acd78f5e4ba0"
+    },
+    "freeTierApplicationAccount": {
+        "address": "83ba9396eb28773717f8033e8de75ee0cd7faa12",
+        "publicKey": "ee54c980bb6d83c0b314b3f53fd5e25377b20f847f6d05c535e3acd78f5e4ba0",
+        "privateKey": "aHInaopP52ZTDfj1rBqT4A17iRACKw2DoPo0w9VYp+9GxHQzuKfqSLwkrCxsi8Aca9DCZhC9v0RFiaX/T44bc8v0BcNtTz0Z7i+vjLMrsHUEVWeO29wYVZCRAFxDIAjT1ONXZxUdVxv4OpYwehlrjyuprjuiPjYCKDbE28L/8MZpgo+el+hfskTmKYpL95rliAZZKqz9VAFhFyPNcXtFfq"
+    },
+    "contactEmail": "user@pokt.network",
+    "user": "user@pokt.network",
+    "description": "",
+    "icon": "",
+    "updatingStatus": false,
+    "freeTierAAT": {
+        "version": "0.0.1",
+        "clientPublicKey": "ee54c980bb6d83c0b314b3f53fd5e25377b20f847f6d05c535e3acd78f5e4ba0",
+        "applicationPublicKey": "50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113",
+        "applicationSignature": "cbcc50980e041968583db6ffae3893271fbd49afcbb9992bc0483c09d9eed3ba50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113"
+    },
+    "gatewayAAT": {
+        "version": "0.0.1",
+        "clientPublicKey": "50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113",
+        "applicationPublicKey": "50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113",
+        "applicationSignature": "cbcc50980e041968583db6ffae3893271fbd49afcbb9992bc0483c09d9eed3ba50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113"
+    },
+    "gatewaySettings": {
+        "secretKey": "ab23e67b08c7f76b04743e9c8ae2e751",
+        "secretKeyRequired": false,
+        "whitelistOrigins": ["Moonbase", "http://localhost:3001", "http://localhost"],
+        "whitelistUserAgents": []
+    }
+}
