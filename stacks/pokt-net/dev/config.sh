@@ -6,7 +6,9 @@ then
   exit 1;
 fi
 
+/bin/bash $CWD/bin/copy-pokt-net-dev-scripts
+
 docker-compose \
-  -f $CWD/stacks/pokt-aps/stack.yml \
+  -f $CWD/stacks/pokt-net/dev/stack.yml \
   --project-directory $CWD/ \
-  down
+  config

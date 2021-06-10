@@ -7,6 +7,6 @@ then
 fi
 
 docker-compose \
-  -f $CWD/stacks/pokt-aps/stack.yml \
+  -f $CWD/stacks/pokt-net/prod/stack.yml \
   --project-directory $CWD/ \
-  down
+  config

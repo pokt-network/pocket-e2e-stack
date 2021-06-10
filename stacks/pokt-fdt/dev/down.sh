@@ -6,7 +6,8 @@ then
   exit 1;
 fi
 
-docker-compose \
-  -f $CWD/stacks/pokt-aps/stack.yml \
+GATEWAY_REPO_PATH=$GATEWAY_REPO_PATH docker-compose \
+  -f $CWD/stacks/pokt-net/dev/stack.yml \
+  -f $CWD/stacks/pokt-fdt/dev/stack.yml \
   --project-directory $CWD/ \
   down

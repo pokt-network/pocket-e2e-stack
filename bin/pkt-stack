@@ -1,0 +1,52 @@
+#/usr/bin/env bash
+
+echo $1 $2 $3 $4
+
+STACK=$1
+ENV=$2
+ACTION=$3
+FLAGS=$4
+
+source .env
+
+case $STACK in
+  "pokt-net")
+    echo "Spinning $ACTION $STACK $ENV stack..."
+    CWD=$(pwd) \
+    POCKET_CORE_REPO_PATH=$POCKET_CORE_REPO_PATH \
+    make -f $(pwd)/Makefile pokt-net-$ENV-$ACTION;
+    exit 0;
+    ;;
+
+  "pokt-fdt")
+    echo "Spinning $ACTION $STACK $ENV stack..."
+    CWD=$(pwd) \
+    GATEWAY_REPO_PATH=$GATEWAY_REPO_PATH \
+    POCKET_CORE_REPO_PATH=$POCKET_CORE_REPO_PATH \
+    make -f $(pwd)/Makefile pokt-fdt-$ENV-$ACTION;
+    exit 0;
+    ;;
+
+  "pokt-aps")
+    echo "Spinning $ACTION $STACK $ENV stack..."
+    CWD=$(pwd) \
+    POCKETJS_REPO_PATH=$POCKETJS_REPO_PATH \
+    make -f $(pwd)/Makefile pokt-aps-$ENV-$ACTION;
+    exit 0;
+    ;;
+
+  "pokt-all")
+    echo "Spinning $ACTION $STACK $ENV stack..."
+    CWD=$(pwd) \
+    POCKETJS_REPO_PATH=$POCKETJS_REPO_PATH \
+    GATEWAY_REPO_PATH=$GATEWAY_REPO_PATH \
+    POCKET_CORE_REPO_PATH=$POCKET_CORE_REPO_PATH \
+    make -f $(pwd)/Makefile pokt-all-$ENV-$ACTION;
+    exit 0;
+    ;;
+
+  *)
+    echo "Undetermined stack, env or action";
+    exit 1;
+    ;;
+esac

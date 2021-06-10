@@ -6,11 +6,9 @@ then
   exit 1;
 fi
 
-/bin/bash $CWD/bin/copy-pokt-net-dev-scripts
-
-docker-compose \
+POCKET_CORE_REPO_PATH=$POCKET_CORE_REPO_PATH \
+GATEWAY_REPO_PATH=$GATEWAY_REPO_PATH docker-compose \
   -f $CWD/stacks/pokt-net/dev/stack.yml \
+  -f $CWD/stacks/pokt-fdt/dev/stack.yml \
   --project-directory $CWD/ \
-  up \
-  --build \
-  --force-recreate
+  config

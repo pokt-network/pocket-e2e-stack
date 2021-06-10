@@ -5,66 +5,70 @@ POCKET_CORE_REPO_PATH ?= ENV_VAR_POCKET_CORE_REPO_PATH_NOT_PROVIDED
 
 # pocket network stack
 # Using dockerhub production image
-up-pokt-net-prod:
-	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ./scripts/up-net-prod.sh
-down-pokt-net-prod:
-	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ./scripts/down-net-prod.sh
+pokt-net-prod-config:
+	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod/config.sh
+
+pokt-net-prod-up:
+	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod/up.sh
+pokt-net-prod-down:
+	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod/down.sh
 
 # Using locally built dev image
-up-pokt-net-dev:
-	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ./scripts/up-net-dev.sh
-down-pokt-net-dev:
-	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ./scripts/down-net-dev.sh
+pokt-net-dev-config:
+	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/dev/config.sh
+
+pokt-net-dev-up:
+	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/dev/up.sh
+pokt-net-dev-down:
+	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/dev/down.sh
 
 
 # pocket foundation stack
-up-pokt-fdt-prod:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ./scripts/up-fdt-prod.sh
-down-pokt-fdt-prod:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ./scripts/down-fdt-prod.sh
+pokt-fdt-prod-config:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-fdt/prod/config.sh
+
+pokt-fdt-prod-up:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-fdt/prod/up.sh
+pokt-fdt-prod-down:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-fdt/prod/down.sh
 
 # pocket foundation stack
-up-pokt-fdt:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ./scripts/up-fdt-dev.sh
-down-pokt-fdt-dev:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ./scripts/down-fdt-dev.sh
+pokt-fdt-dev-config:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-fdt/dev/config.sh
+
+pokt-fdt-dev-up:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-fdt/dev/up.sh
+pokt-fdt-dev-down:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-fdt/dev/down.sh
 
 # pocket foundation stack
-up-pokt-aps:
-	CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ./scripts/up-aps.sh
-down-pokt-aps:
-	CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ./scripts/down-aps.sh
+pokt-aps-prod-up:
+	CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/stacks/pokt-aps/up.sh
+pokt-aps-prod-down:
+	CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/stacks/pokt-aps/down.sh
+
+pokt-aps-dev-up:
+	CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/stacks/pokt-aps/up.sh
+pokt-aps-dev-down:
+	CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/stacks/pokt-aps/down.sh
+
 
 # pocket app solutions + pocket foundation + pocket network stack
 # Spin up all in prod
-up-pokt-all-prod:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ./scripts/up-all-prod.sh
-down-pokt-all-prod:
-	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ./scripts/down-all-prod.sh
+pokt-all-prod-config:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/prod/config.sh
+
+pokt-all-prod-up:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/prod/up.sh
+pokt-all-prod-down:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/prod/down.sh
 
 # Spin up all in dev
-up-pokt-all-dev:
-	POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ./scripts/up-all-dev.sh
-down-pokt-all-dev:
-	POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ./scripts/down-all-dev.sh
+pokt-all-dev-config:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/dev/config.sh
 
+pokt-all-dev-up:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/dev/up.sh
+pokt-all-dev-down:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ${CWD}/pokt-all/dev/down.sh
 
-# Spin up all in dev
-up-pokt-all-dev-no-aps:
-	POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) sh ./scripts/up-all-dev-no-aps.sh
-down-pokt-all-dev-no-aps:
-	POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) sh ./scripts/down-all-dev-no-aps.sh
-
-
-# Spin up all in dev
-up-pokt-all-dev-no-net:
-	POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) sh ./scripts/up-all-dev-no-net.sh
-down-pokt-all-dev-no-net:
-	POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) sh ./scripts/down-all-dev-no-net.sh
-
-
-config-pokt-all-dev:
-	POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ./scripts/config-all-dev.sh
-
-config-pokt-all-prod:
-	POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) CWD=$(CWD) POCKETJS_REPO_PATH=$(POCKETJS_REPO_PATH) sh ./scripts/config-all-prod.sh
