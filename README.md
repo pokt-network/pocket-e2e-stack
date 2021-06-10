@@ -36,17 +36,18 @@ Available actions:
 <br/>
 
 
-##### 1. Properly configure the gateway
+### 1. Properly configure the gateway
 
 Make sure you are on the `dev/make-use-locally` branch on the gateway repository.
 
-Make sure you follow the proper instructions to replicate the production databse locally (_check the gateway README.md_)****
+Make sure you follow the proper instructions to replicate the production database locally (_check the gateway README.md_)
 
-Afterwards, add a new entry in the "applications" collection in the gateway's database with the values located in `config/mongo-db-app.json`
+
+Once you have properly setup the gateway database with production data, add a new entry in the "applications" collection in the gateway's database with the values located in `config/mongo-db-app.json`
 
 Then, make sure you add the blockchains you are concerned with to the `Blockchains` collection as you have added them to the chains.json in `config/chains.json` in this project.
 
-When you are ready, create a .env file with the following values:
+When you are ready, create a `.env` file at the root of this repo with the following values:
 (_make sure the paths exist on your machine_)
 ```
 GATEWAY_REPO_PATH=../gateway
@@ -54,7 +55,7 @@ POCKETJS_REPO_PATH=../client
 POCKET_CORE_REPO_PATH=../core
 ```
 
-##### 2. Bring the pocket foundation stack up
+### 2. Bring the pocket foundation stack up
 
 
 You can specify which environment you would like to run:
