@@ -13,6 +13,15 @@ pokt-net-prod-up:
 pokt-net-prod-down:
 	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod/down.sh
 
+# pocket network stack
+# Using dockerhub production locally built image
+pokt-net-prod-local-config:
+	POCKET_CORE_TARGET_VERSION=$(POCKET_CORE_TARGET_VERSION) CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod-local/config.sh
+pokt-net-prod-local-up:
+	POCKET_CORE_TARGET_VERSION=$(POCKET_CORE_TARGET_VERSION) CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod-local/up.sh
+pokt-net-prod-local-down:
+	POCKET_CORE_TARGET_VERSION=$(POCKET_CORE_TARGET_VERSION) CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod-local/down.sh
+
 # Using locally built dev image
 pokt-net-dev-config:
 	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/dev/config.sh
