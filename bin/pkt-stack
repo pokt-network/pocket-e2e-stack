@@ -14,6 +14,8 @@ case $STACK in
     echo "Spinning $ACTION $STACK $ENV stack..."
     CWD=$(pwd) \
     POCKET_CORE_REPO_PATH=$POCKET_CORE_REPO_PATH \
+    POCKET_CORE_TARGET_VERSION=$POCKET_CORE_TARGET_VERSION \
+    SPECIFIC_NODE=$SPECIFIC_NODE \
     make -f $(pwd)/Makefile pokt-net-$ENV-$ACTION;
     exit 0;
     ;;

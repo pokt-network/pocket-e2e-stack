@@ -2,7 +2,10 @@ version: "2.1"
 services:
     node1.pokt:
         privileged: true
-        build: ${CWD}/docker/pokt-net/prod
+        build:
+          context: ${CWD}/docker/pokt-net/prod
+          args:
+            - BRANCH_NAME=${POCKET_CORE_TARGET_VERSION:-"RC-0.6.3"}
         command: /usr/bin/expect /home/app/.pocket/local_command.sh
         ports:
           - 8081:8081
@@ -26,7 +29,10 @@ services:
 
     node2.pokt:
         privileged: true
-        build: ${CWD}/docker/pokt-net/prod
+        build:
+          context: ${CWD}/docker/pokt-net/prod
+          args:
+            - BRANCH_NAME=${POCKET_CORE_TARGET_VERSION:-"RC-0.6.3"}
         command: /usr/bin/expect /home/app/.pocket/local_command.sh
         ports:
           - 8082:8081
@@ -50,7 +56,10 @@ services:
 
     node3.pokt:
         privileged: true
-        build: ${CWD}/docker/pokt-net/prod
+        build:
+          context: ${CWD}/docker/pokt-net/prod
+          args:
+            - BRANCH_NAME=${POCKET_CORE_TARGET_VERSION:-"RC-0.6.3"}
         command: /usr/bin/expect /home/app/.pocket/local_command.sh
         ports:
           - 8083:8081
@@ -74,7 +83,10 @@ services:
 
     node4.pokt:
         privileged: true
-        build: ${CWD}/docker/pokt-net/prod
+        build:
+          context: ${CWD}/docker/pokt-net/prod
+          args:
+            - BRANCH_NAME=${POCKET_CORE_TARGET_VERSION:-"RC-0.6.3"}
         command: /usr/bin/expect /home/app/.pocket/local_command.sh
         ports:
           - 8084:8081
@@ -98,7 +110,10 @@ services:
 
     node5.pokt:
         privileged: true
-        build: ${CWD}/docker/pokt-net/prod
+        build:
+          context: ${CWD}/docker/pokt-net/prod
+          args:
+            - BRANCH_NAME=${POCKET_CORE_TARGET_VERSION:-"RC-0.6.3"}
         command: /usr/bin/expect /home/app/.pocket/local_command.sh
         ports:
           - 8085:8081
