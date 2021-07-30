@@ -9,15 +9,14 @@ fi
 if [ -z $SPECIFIC_NODE ];
 then
   docker-compose \
-    -f $CWD/stacks/pokt-net/prod/stack.yml \
+    -f $CWD/stacks/pokt-net/prod-local/stack.yml \
     --project-directory $CWD/ \
     up \
-    --build
-#    --build \
-#    --force-recreate
+    --build \
+    --force-recreate
 else
   docker-compose \
-    -f $CWD/stacks/pokt-net/prod/stack.yml \
+    -f $CWD/stacks/pokt-net/prod-local/stack.yml \
     --project-directory $CWD/ \
     up \
     --build \

@@ -3,8 +3,9 @@ services:
     node1.pokt:
         privileged: true
         build:
-          context: ${CWD}/docker/pokt-net/prod
-        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+          context: ${POCKET_CORE_REPO_PATH}
+          dockerfile: ${CWD}/docker/pokt-net/dev/Dockerfile
+        command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
         ports:
           - 8081:8081
           - 26657:26657
@@ -15,21 +16,22 @@ services:
           - "46656"
           - "53"
         env_file:
-          - ${CWD}/stacks/pokt-net/prod/.node1.env
+          - ${CWD}/stacks/pokt-net/prod-local/.node1.env
         networks:
           - pocket
         volumes:
-          - ${CWD}/docker/pokt-net/prod/local_command.sh:/home/app/.pocket/local_command.sh
+          - ${CWD}/docker/pokt-net/prod-local/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
           - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
           - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
-          - ${CWD}/stacks/pokt-net/prod/config/config.node1.json:/home/app/.pocket/config/config.json
+          - ${CWD}/stacks/pokt-net/prod-local/config/config.node1.json:/home/app/.pocket/config/config.json
           - ${CWD}/data/pokt-net.node1.pokt:/home/app/.pocket/data
 
     node2.pokt:
         privileged: true
         build:
-          context: ${CWD}/docker/pokt-net/prod
-        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+          context: ${POCKET_CORE_REPO_PATH}
+          dockerfile: ${CWD}/docker/pokt-net/dev/Dockerfile
+        command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
         ports:
           - 8082:8081
           - 26658:26657
@@ -40,21 +42,22 @@ services:
           - "46656"
           - "53"
         env_file:
-          - ${CWD}/stacks/pokt-net/prod/.node2.env
+          - ${CWD}/stacks/pokt-net/prod-local/.node2.env
         networks:
           - pocket
         volumes:
-          - ${CWD}/docker/pokt-net/prod/local_command.sh:/home/app/.pocket/local_command.sh
+          - ${CWD}/docker/pokt-net/prod-local/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
           - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
           - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
-          - ${CWD}/stacks/pokt-net/prod/config/config.node2.json:/home/app/.pocket/config/config.json
+          - ${CWD}/stacks/pokt-net/prod-local/config/config.node2.json:/home/app/.pocket/config/config.json
           - ${CWD}/data/pokt-net.node2.pokt:/home/app/.pocket/data
 
     node3.pokt:
         privileged: true
         build:
-          context: ${CWD}/docker/pokt-net/prod
-        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+          context: ${POCKET_CORE_REPO_PATH}
+          dockerfile: ${CWD}/docker/pokt-net/dev/Dockerfile
+        command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
         ports:
           - 8083:8081
           - 26659:26657
@@ -65,21 +68,22 @@ services:
           - "46656"
           - "53"
         env_file:
-          - ${CWD}/stacks/pokt-net/prod/.node3.env
+          - ${CWD}/stacks/pokt-net/prod-local/.node3.env
         networks:
           - pocket
         volumes:
-          - ${CWD}/docker/pokt-net/prod/local_command.sh:/home/app/.pocket/local_command.sh
+          - ${CWD}/docker/pokt-net/prod-local/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
           - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
           - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
-          - ${CWD}/stacks/pokt-net/prod/config/config.node3.json:/home/app/.pocket/config/config.json
+          - ${CWD}/stacks/pokt-net/prod-local/config/config.node3.json:/home/app/.pocket/config/config.json
           - ${CWD}/data/pokt-net.node3.pokt:/home/app/.pocket/data
 
     node4.pokt:
         privileged: true
         build:
-          context: ${CWD}/docker/pokt-net/prod
-        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+          context: ${POCKET_CORE_REPO_PATH}
+          dockerfile: ${CWD}/docker/pokt-net/dev/Dockerfile
+        command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
         ports:
           - 8084:8081
           - 26660:26657
@@ -90,21 +94,22 @@ services:
           - "46656"
           - "53"
         env_file:
-          - ${CWD}/stacks/pokt-net/prod/.node4.env
+          - ${CWD}/stacks/pokt-net/prod-local/.node4.env
         networks:
           - pocket
         volumes:
-          - ${CWD}/docker/pokt-net/prod/local_command.sh:/home/app/.pocket/local_command.sh
+          - ${CWD}/docker/pokt-net/prod-local/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
           - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
           - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
-          - ${CWD}/stacks/pokt-net/prod/config/config.node4.json:/home/app/.pocket/config/config.json
+          - ${CWD}/stacks/pokt-net/prod-local/config/config.node4.json:/home/app/.pocket/config/config.json
           - ${CWD}/data/pokt-net.node4.pokt:/home/app/.pocket/data
 
     node5.pokt:
         privileged: true
         build:
-          context: ${CWD}/docker/pokt-net/prod
-        command: /usr/bin/expect /home/app/.pocket/local_command.sh
+          context: ${POCKET_CORE_REPO_PATH}
+          dockerfile: ${CWD}/docker/pokt-net/dev/Dockerfile
+        command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
         ports:
           - 8085:8081
           - 26661:26657
@@ -115,14 +120,14 @@ services:
           - "46656"
           - "53"
         env_file:
-          - ${CWD}/stacks/pokt-net/prod/.node5.env
+          - ${CWD}/stacks/pokt-net/prod-local/.node5.env
         networks:
           - pocket
         volumes:
-          - ${CWD}/docker/pokt-net/prod/local_command.sh:/home/app/.pocket/local_command.sh
+          - ${CWD}/docker/pokt-net/prod-local/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
           - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
           - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
-          - ${CWD}/stacks/pokt-net/prod/config/config.node5.json:/home/app/.pocket/config/config.json
+          - ${CWD}/stacks/pokt-net/prod-local/config/config.node5.json:/home/app/.pocket/config/config.json
           - ${CWD}/data/pokt-net.node5.pokt:/home/app/.pocket/data
 
 networks:
