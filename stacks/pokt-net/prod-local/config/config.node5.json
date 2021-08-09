@@ -141,6 +141,6 @@
         "max_claim_age_for_proof_retry": 100,
         "proof_prevalidation": false,
         "ctx_cache_size": 1,
-        "abci_logging": false
+        "abci_logging": true
     }
 }

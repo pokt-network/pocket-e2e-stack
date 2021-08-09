@@ -4,6 +4,8 @@ services:
         privileged: true
         build:
           context: ${CWD}/docker/pokt-net/prod
+          args:
+            - BRANCH_NAME=${POCKET_RELEASE_TAG}
         command: /usr/bin/expect /home/app/.pocket/local_command.sh
         ports:
           - 8081:8081
@@ -29,6 +31,8 @@ services:
         privileged: true
         build:
           context: ${CWD}/docker/pokt-net/prod
+          args:
+            - BRANCH_NAME=${POCKET_RELEASE_TAG}
         command: /usr/bin/expect /home/app/.pocket/local_command.sh
         ports:
           - 8082:8081
@@ -54,6 +58,8 @@ services:
         privileged: true
         build:
           context: ${CWD}/docker/pokt-net/prod
+          args:
+            - BRANCH_NAME=${POCKET_RELEASE_TAG}
         command: /usr/bin/expect /home/app/.pocket/local_command.sh
         ports:
           - 8083:8081
@@ -79,6 +85,8 @@ services:
         privileged: true
         build:
           context: ${CWD}/docker/pokt-net/prod
+          args:
+            - BRANCH_NAME=${POCKET_RELEASE_TAG}
         command: /usr/bin/expect /home/app/.pocket/local_command.sh
         ports:
           - 8084:8081
@@ -104,6 +112,8 @@ services:
         privileged: true
         build:
           context: ${CWD}/docker/pokt-net/prod
+          args:
+            - BRANCH_NAME=${POCKET_RELEASE_TAG}
         command: /usr/bin/expect /home/app/.pocket/local_command.sh
         ports:
           - 8085:8081
