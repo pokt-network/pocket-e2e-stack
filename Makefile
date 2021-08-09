@@ -1,3 +1,5 @@
+EXPLORER_REPO_PATH ?= ENV_VAR_GATEWAY_REPO_PATH_NOT_PROVIDED
+WALLET_REPO_PATH ?= ENV_VAR_GATEWAY_REPO_PATH_NOT_PROVIDED
 GATEWAY_REPO_PATH ?= ENV_VAR_GATEWAY_REPO_PATH_NOT_PROVIDED
 CWD ?= ENV_VAR_CWD_NOT_PROVIDED
 POCKETJS_REPO_PATH ?= ENV_VAR_POCKETJS_REPO_PATH_NOT_PROVIDED
@@ -6,12 +8,12 @@ POCKET_CORE_REPO_PATH ?= ENV_VAR_POCKET_CORE_REPO_PATH_NOT_PROVIDED
 # pocket network stack
 # Using dockerhub production image
 pokt-net-prod-config:
-	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod/config.sh
+	POCKET_RELEASE_TAG=${POCKET_RELEASE_TAG} CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod/config.sh
 
 pokt-net-prod-up:
-	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod/up.sh
+	POCKET_RELEASE_TAG=${POCKET_RELEASE_TAG} CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod/up.sh
 pokt-net-prod-down:
-	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod/down.sh
+	POCKET_RELEASE_TAG=${POCKET_RELEASE_TAG} CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/prod/down.sh
 
 # pocket network stack
 # Using dockerhub production locally built image
@@ -49,6 +51,15 @@ pokt-fdt-dev-up:
 	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-fdt/dev/up.sh
 pokt-fdt-dev-down:
 	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-fdt/dev/down.sh
+
+# pocket foundation stack
+pokt-fdt-prod-local-config:
+	GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-fdt/dev/config.sh
+
+pokt-fdt-prod-local-up:
+	EXPLORER_REPO_PATH=$(EXPLORER_REPO_PATH) WALLET_REPO_PATH=$(WALLET_REPO_PATH) GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-fdt/prod-local/up.sh
+pokt-fdt-prod-local-down:
+	EXPLORER_REPO_PATH=$(EXPLORER_REPO_PATH) WALLET_REPO_PATH=$(WALLET_REPO_PATH) GATEWAY_REPO_PATH=$(GATEWAY_REPO_PATH) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-fdt/prod-local/down.sh
 
 # pocket foundation stack
 pokt-aps-prod-up:

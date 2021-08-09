@@ -8,7 +8,7 @@ services:
       dockerfile: ${CWD}/docker/pokt-fdt/dev/Dockerfile.explorer
     command: npm run start
     env_file:
-      - ${CWD}/stacks/pokt-fdt/dev/.explorer.env
+      - ${CWD}/stacks/pokt-fdt/prod-local/.explorer.env
     ports:
       - 4000:4000
     networks:
@@ -21,7 +21,7 @@ services:
       dockerfile: ${CWD}/docker/pokt-fdt/dev/Dockerfile.wallet
     command: npm run start
     env_file:
-      - ${CWD}/stacks/pokt-fdt/dev/.wallet.env
+      - ${CWD}/stacks/pokt-fdt/prod-local/.wallet.env
     ports:
       - 5000:5000
     networks:
@@ -35,7 +35,7 @@ services:
       dockerfile: ${CWD}/docker/pokt-fdt/dev/Dockerfile
     command: npm run start:watch
     env_file:
-      - ${CWD}/stacks/pokt-fdt/dev/.portal-api.env
+      - ${CWD}/stacks/pokt-fdt/prod-local/.portal-api.env
     volumes:
       - "${GATEWAY_REPO_PATH}/src:/usr/src/gateway/src"
       - "${GATEWAY_REPO_PATH}/dist:/usr/src/gateway/dist"
@@ -76,15 +76,24 @@ services:
     networks:
       - poktnet
 
-  nodea.dev.pokt:
+
+  node1.pokt:
     networks:
       - poktnet
 
-  nodeb.dev.pokt:
+  node2.pokt:
     networks:
       - poktnet
 
-  nodec.dev.pokt:
+  node3.pokt:
+    networks:
+      - poktnet
+
+  node4.pokt:
+    networks:
+      - poktnet
+
+  node5.pokt:
     networks:
       - poktnet
 

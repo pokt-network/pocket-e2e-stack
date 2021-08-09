@@ -14,7 +14,7 @@ case $STACK in
     echo "Spinning $ACTION $STACK $ENV stack..."
     CWD=$(pwd) \
     POCKET_CORE_REPO_PATH=$POCKET_CORE_REPO_PATH \
-    POCKET_CORE_TARGET_VERSION=$POCKET_CORE_TARGET_VERSION \
+    TAG=$POCKET_RELEASE_TAG \
     SPECIFIC_NODE=$SPECIFIC_NODE \
     make -f $(pwd)/Makefile pokt-net-$ENV-$ACTION;
     exit 0;
@@ -23,6 +23,8 @@ case $STACK in
   "pokt-fdt")
     echo "Spinning $ACTION $STACK $ENV stack..."
     CWD=$(pwd) \
+    EXPLORER_REPO_PATH=$EXPLORER_REPO_PATH \
+    WALLET_REPO_PATH=$WALLET_REPO_PATH \
     GATEWAY_REPO_PATH=$GATEWAY_REPO_PATH \
     POCKET_CORE_REPO_PATH=$POCKET_CORE_REPO_PATH \
     make -f $(pwd)/Makefile pokt-fdt-$ENV-$ACTION;
