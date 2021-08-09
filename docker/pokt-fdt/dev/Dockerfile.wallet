@@ -1,0 +1,58 @@
+# Check out https://hub.docker.com/_/node to select a new base image
+FROM node:12.15-slim
+
+# Bind to all network interfaces so that it can be mapped to the host OS
+ENV HOST=0.0.0.0
+ENV PORT=4000
+ENV PATH="${PATH}:/usr/src/explorer/node_modules/.bin"
+ENV REACT_APP_CLIENT_PASSPHRASE=aaa
+ENV REACT_APP_CLIENT_PUBLIC_KEY=bbb
+ENV REACT_APP_CLIENT_PRIVATE_KEY=ccc
+ENV REACT_APP_WALLET_APP_PUBLIC_KEY=ddd
+ENV REACT_APP_WALLET_APP_AAT_SIGNATURE=ffff
+ENV REACT_APP_POKT_USD_VALUE=0.14
+ENV REACT_APP_SECURE_LS_ENCRYPTION_SECRET=v3rys3cr3tt0ken
+ENV REACT_APP_SECURE_LS_ENCODING_TYPE=aes
+ENV REACT_APP_SECURE_LS_IS_COMPRESSION=true
+ENV REACT_APP_DISPATCHERS=https://node1.mainnet.pokt.network,https://node2.mainnet.pokt.network
+ENV REACT_APP_HTTP_PROVIDER=
+ENV REACT_APP_AAT_VERSION=1.0
+ENV REACT_APP_MAX_DISPATCHERS=1
+ENV REACT_APP_PROVIDER_TYPE=???
+ENV REACT_APP_BLOCK_EXPLORER_BASE_URL=https://explorer.pokt.network
+ENV REACT_APP_DASHBOARD_BASE_URL=https://mainnet.dashboard.pokt.network
+ENV REACT_APP_BUY_POKT_BASE_URL=https://forum.pokt.network/t/secondary-markets-for-pokt/629
+ENV REACT_APP_CHAIN=0001
+ENV REACT_APP_CHAIN_ID=mainnet
+ENV REACT_APP_BLOCK_TIME=900000
+ENV REACT_APP_MAX_TRANSACTION_LIST_COUNT=100
+ENV REACT_APP_TX_FEE=10000
+ENV REACT_APP_SESSION_LENGTH=30
+ENV REACT_APP_GATEWAY_BASE_URL="http://portal-api:3000/v1/lb/60a2ac11b1747c6552385c61"
+ENV REACT_APP_HTTP_TIMEOUT=0
+ENV REACT_APP_HTTP_HEADERS='{"Content-Type": "application/json"}'
+ENV REACT_APP_USE_LEGACY_CODEC=true
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+
+RUN mkdir -p /usr/src/explorer
+
+WORKDIR /usr/src/explorer
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+RUN npm install
+
+# Bundle app source code
+COPY . .
+
+RUN npm run build
+
+EXPOSE ${PORT}
+
+CMD [ "npm", "run start" ]

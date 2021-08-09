@@ -1,0 +1,37 @@
+# Check out https://hub.docker.com/_/node to select a new base image
+FROM node:12.15-slim
+
+# Bind to all network interfaces so that it can be mapped to the host OS
+ENV HOST=0.0.0.0
+ENV PORT=4000
+ENV PATH="${PATH}:/usr/src/explorer/node_modules/.bin"
+ENV GATEWAY_BASE_URL=http://gateway.pokt.network:3000/v1/60676c9f7cbbfe002f0b9cbe
+ENV CHAIN_ID=mainnet
+ENV HTTP_TIMEOUT=0
+ENV HTTP_HEADERS='{ "Content-Type": "application/json", "Blockchain-Subdomain": "mainnet" }'
+ENV NODE_ENV=development
+ENV PUBLIC_URL=""
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+
+RUN mkdir -p /usr/src/explorer
+
+WORKDIR /usr/src/explorer
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+RUN npm install
+
+# Bundle app source code
+COPY . .
+
+RUN npm run build
+
+EXPOSE ${PORT}
+
+CMD [ "npm", "run start" ]

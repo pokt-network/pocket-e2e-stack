@@ -23,6 +23,8 @@ case $STACK in
   "pokt-fdt")
     echo "Spinning $ACTION $STACK $ENV stack..."
     CWD=$(pwd) \
+    EXPLORER_REPO_PATH=$EXPLORER_REPO_PATH \
+    WALLET_REPO_PATH=$WALLET_REPO_PATH \
     GATEWAY_REPO_PATH=$GATEWAY_REPO_PATH \
     POCKET_CORE_REPO_PATH=$POCKET_CORE_REPO_PATH \
     make -f $(pwd)/Makefile pokt-fdt-$ENV-$ACTION;
