@@ -8,6 +8,18 @@
 <h1 align="center">User guide</h2>
 
 
+<h2 align="center">Getting Started Quickly</h2>
+
+For quick usage, to use a 5 node setup of pocket network run:
+```
+$ bin/pkt-stack pokt-net prod-local up
+```
+
+To run the portal-api alongside the wallet/explorer against the 5 node setup, run:
+```
+$ bin/pkt-stack pokt-fdt prod-local up
+```
+
 <h2 align="center">How to use</h2>
 
 ```bash
@@ -43,7 +55,7 @@ Make sure you are on the `dev/make-use-locally` branch on the gateway repository
 Make sure you follow the proper instructions to replicate the production database locally (_check the gateway README.md_)
 
 
-Once you have properly setup the gateway database with production data, add a new entry in the "applications" collection in the gateway's database with the values located in `config/mongo-db-app.json`
+Once you have properly setup the gateway database with production data, add a new entry in the "applications" collection in the gateways database with the values located in `config/mongo-db-app.json`
 
 Then, make sure you add the blockchains you are concerned with to the `Blockchains` collection as you have added them to the chains.json in `config/chains.json` in this project.
 
