@@ -25,6 +25,7 @@ services:
       - ${CWD}/stacks/pokt-net/dev/config/config.nodea.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodea.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+      - "${POCKET_NETWORK_TENDERMINT_FORK}:/go/src/github.com/pokt-network/tendermint"
     networks:
       - poktnet
 
@@ -51,6 +52,7 @@ services:
       - ${CWD}/stacks/pokt-net/dev/config/config.nodeb.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodeb.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+      - "${POCKET_NETWORK_TENDERMINT_FORK}:/go/src/github.com/pokt-network/tendermint"
     networks:
       - poktnet
 
@@ -77,6 +79,7 @@ services:
       - ${CWD}/stacks/pokt-net/dev/config/config.nodec.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodec.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+      - "${POCKET_NETWORK_TENDERMINT_FORK}:/go/src/github.com/pokt-network/tendermint"
     networks:
       - poktnet
 
