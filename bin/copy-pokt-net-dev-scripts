@@ -12,9 +12,22 @@ then
   exit 1;
 fi;
 
-SCRIPTS=(
-  "$CWD/docker/pokt-net/dev/install-deps.sh" "$CWD/docker/pokt-net/dev/watch.sh" "$CWD/docker/pokt-net/dev/entrypoint-dev.sh" "$CWD/docker/pokt-net/dev/command.sh"
-)
+if [ -z $1 ];
+then
+  echo "Missing first argument: env"
+  exit 1;
+fi
+
+if [ $1 == "dev-tm" ];
+then
+  SCRIPTS=(
+      "$CWD/docker/pokt-net/$1/install-deps.sh" "$CWD/docker/pokt-net/$1/watch.sh" "$CWD/docker/pokt-net/$1/entrypoint-dev.sh" "$CWD/docker/pokt-net/$1/command.sh" "$CWD/docker/pokt-net/$1/go.mod.local" "$CWD/docker/pokt-net/$1/prepare-tendermint.sh" "$CWD/docker/pokt-net/$1/go.mod.tendermint"
+    )
+else
+  SCRIPTS=(
+    "$CWD/docker/pokt-net/$1/install-deps.sh" "$CWD/docker/pokt-net/$1/watch.sh" "$CWD/docker/pokt-net/$1/entrypoint-dev.sh" "$CWD/docker/pokt-net/$1/command.sh"
+  )
+fi
 
 PRINT_SCRIPTS() {
   for i in "${!SCRIPTS[@]}"
