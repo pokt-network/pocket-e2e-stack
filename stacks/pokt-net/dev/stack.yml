@@ -10,6 +10,9 @@ services:
     command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
     env_file:
       - ${CWD}/stacks/pokt-net/dev/.nodea.dev.env
+    environment:
+      - DEBUG=${DEBUG}
+      - DEBUG_PORT=1234
     ports:
       - "8081:8081"
       - "26657:26657"
@@ -18,6 +21,7 @@ services:
       - "26656"
       - "26657"
       - "46656"
+      - "1234"
     volumes:
       - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
       - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
@@ -25,7 +29,6 @@ services:
       - ${CWD}/stacks/pokt-net/dev/config/config.nodea.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodea.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
-      - "${POCKET_NETWORK_TENDERMINT_FORK}:/go/src/github.com/pokt-network/tendermint"
     networks:
       - poktnet
 
@@ -37,6 +40,9 @@ services:
     command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
     env_file:
       - ${CWD}/stacks/pokt-net/dev/.nodeb.dev.env
+    environment:
+      - DEBUG=${DEBUG}
+      - DEBUG_PORT=1235
     ports:
       - "8082:8081"
       - "26658:26657"
@@ -45,6 +51,7 @@ services:
       - "26656"
       - "26657"
       - "46656"
+      - "1235"
     volumes:
       - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
       - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
@@ -52,7 +59,6 @@ services:
       - ${CWD}/stacks/pokt-net/dev/config/config.nodeb.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodeb.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
-      - "${POCKET_NETWORK_TENDERMINT_FORK}:/go/src/github.com/pokt-network/tendermint"
     networks:
       - poktnet
 
@@ -64,6 +70,9 @@ services:
     command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
     env_file:
       - ${CWD}/stacks/pokt-net/dev/.nodec.dev.env
+    environment:
+      - DEBUG=${DEBUG}
+      - DEBUG_PORT=1236
     ports:
       - "8083:8081"
       - "26659:26657"
@@ -72,6 +81,7 @@ services:
       - "26656"
       - "26657"
       - "46656"
+      - "1236"
     volumes:
       - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
       - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
@@ -79,7 +89,6 @@ services:
       - ${CWD}/stacks/pokt-net/dev/config/config.nodec.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodec.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
-      - "${POCKET_NETWORK_TENDERMINT_FORK}:/go/src/github.com/pokt-network/tendermint"
     networks:
       - poktnet
 

@@ -13,6 +13,9 @@ services:
     command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
     env_file:
       - ${CWD}/stacks/pokt-net/dev-tm/.nodea.dev.env
+    environment:
+      - DEBUG=${DEBUG}
+      - DEBUG_PORT=1234
     ports:
       - "8081:8081"
       - "26657:26657"
@@ -21,6 +24,7 @@ services:
       - "26656"
       - "26657"
       - "46656"
+      - "1234"
     volumes:
       - ${CWD}/docker/pokt-net/dev-tm/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
       - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
@@ -40,6 +44,9 @@ services:
     command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
     env_file:
       - ${CWD}/stacks/pokt-net/dev-tm/.nodeb.dev.env
+    environment:
+      - DEBUG=${DEBUG}
+      - DEBUG_PORT=1235
     ports:
       - "8082:8081"
       - "26658:26657"
@@ -48,6 +55,7 @@ services:
       - "26656"
       - "26657"
       - "46656"
+      - "1235"
     volumes:
       - ${CWD}/docker/pokt-net/dev-tm/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
       - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
@@ -67,6 +75,9 @@ services:
     command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
     env_file:
       - ${CWD}/stacks/pokt-net/dev-tm/.nodec.dev.env
+    environment:
+      - DEBUG=${DEBUG}
+      - DEBUG_PORT=1236
     ports:
       - "8083:8081"
       - "26659:26657"
@@ -75,6 +86,7 @@ services:
       - "26656"
       - "26657"
       - "46656"
+      - "1236"
     volumes:
       - ${CWD}/docker/pokt-net/dev-tm/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
       - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json

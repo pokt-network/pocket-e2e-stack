@@ -14,5 +14,18 @@ then
   exit 1;
 fi
 
+command=""
+if [ $DEBUG==1 ];
+then
+  command="$POCKET_PATH/../prepare-tendermint.sh && sleep 1 && cd $POCKET_PATH && touch output.dlv && dlv debug $POCKET_PATH/app/cmd/pocket_core/main.go --continue --output output.dlv --headless --accept-multiclient --listen=:$DEBUG_PORT --api-version=2 -- $EXECCOMMAND"
+else
+  command="$POCKET_PATH/../prepare-tendermint.sh && sleep 1 && cd $POCKET_PATH && go run $POCKET_PATH/app/cmd/pocket_core/main.go $EXECCOMMAND"
+fi;
+
+echo $command;
 cd $POCKET_PATH/..
-reflex -r '\.go' -s -- sh -c '$POCKET_PATH/../prepare-tendermint.sh && sleep 1 && cd $POCKET_PATH && go run app/cmd/pocket_core/main.go $EXECCOMMAND';
+reflex \
+  --start-service \
+  -r '\.go' \
+  -s -- sh -c $command;
+

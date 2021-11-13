@@ -56,11 +56,12 @@ RUN mv /tmp/entrypoint-dev.sh /home/app/entrypoint.sh && mv /tmp/command.sh /hom
 RUN mkdir -p /home/app/.pocket/config
 RUN chown -R app /home/app/.pocket
 
-# install reflexo
-RUN go get github.com/cespare/reflex
-
 # Install project dependencies and builds the binary
 RUN go build -tags cleveldb -o ${GOBIN}/bin/pocket ./app/cmd/pocket_core/main.go
+
+# install reflex and dlv
+RUN go get github.com/cespare/reflex
+RUN go get github.com/go-delve/delve/cmd/dlv@latest
 
 USER app
 ENTRYPOINT ["/home/app/entrypoint.sh"]
