@@ -23,6 +23,7 @@ RUN apk -v --update --no-cache add \
 
 # Environment and system dependencies setup
 ENV POCKET_PATH=/go/src/github.com/pokt-network/pocket-core/
+ENV TENDERMINT_PATH=/go/src/github.com/pokt-network/tendermint/
 ENV GO111MODULE="on"
 ENV EXECCOMMAND="start --keybase=false --datadir=/home/app/.pocket"
 ENV POCKET_CORE_SEEDS="notparsed"
@@ -41,7 +42,8 @@ COPY . .
 
 # Copying deps and hot reloading/watch script
 COPY install-deps.sh ./deps.sh
-COPY watch.sh ./
+COPY watch.sh ../
+COPY prepare-tendermint.sh ../
 COPY entrypoint-dev.sh /tmp/
 COPY command.sh /tmp/
 
@@ -55,6 +57,7 @@ RUN addgroup -S app \
 RUN mv /tmp/entrypoint-dev.sh /home/app/entrypoint.sh && mv /tmp/command.sh /home/app/command.sh
 RUN mkdir -p /home/app/.pocket/config
 RUN chown -R app /home/app/.pocket
+RUN chown -R app /go
 
 # Install project dependencies and builds the binary
 RUN go build -tags cleveldb -o ${GOBIN}/bin/pocket ./app/cmd/pocket_core/main.go
@@ -63,5 +66,8 @@ RUN go build -tags cleveldb -o ${GOBIN}/bin/pocket ./app/cmd/pocket_core/main.go
 RUN go get github.com/cespare/reflex
 RUN go get github.com/go-delve/delve/cmd/dlv@latest
 
-USER app
+COPY ./go.mod.local ./go.mod
+RUN chmod 654 $POCKET_PATH/go.mod
+
+WORKDIR /go/src/github.com/pokt-network/
 ENTRYPOINT ["/home/app/entrypoint.sh"]

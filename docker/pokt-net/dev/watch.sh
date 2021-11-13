@@ -4,7 +4,9 @@ echo "POCKET_CORE_KEY: $POCKET_CORE_KEY, POCKET_CORE_SEEDS: $POCKET_CORE_SEEDS, 
 if [ -z $EXECOMMAND ]
 then
   echo "Expecting EXECOMMAND env var, none was exported.";
-  export EXECCOMMAND="start --seeds $POCKET_CORE_SEEDS --keybase=false --datadir=/home/app/.pocket"
+  export EXECCOMMANDACTION="start"
+  export EXECCOMMANDFLAGS="--seeds $POCKET_CORE_SEEDS --keybase=false --datadir=/home/app/.pocket"
+  export EXECCOMMAND="$EXECCOMMANDACTION $EXECCOMMANDFLAGS"
   echo "Exported $EXECCOMMAND as EXECCOMMAND";
 fi;
 
@@ -14,4 +16,17 @@ then
   exit 1;
 fi
 
-reflex -r '\.go' -s -- sh -c 'go run $POCKET_PATH/app/cmd/pocket_core/main.go $EXECCOMMAND';
+command=''
+if [ $DEBUG==1 ];
+then
+  command="touch output.dlv && dlv debug $POCKET_PATH/app/cmd/pocket_core/main.go --continue --output output.dlv --headless --accept-multiclient --listen=:$DEBUG_PORT --api-version=2 -- $EXECCOMMAND"
+else
+  command="go run $POCKET_PATH/app/cmd/pocket_core/main.go $EXECCOMMAND"
+fi;
+
+echo $command
+reflex \
+  --start-service \
+  -r '\.go' \
+  -s -- sh -c $command;
+

@@ -3,13 +3,16 @@ version: "3.5"
 services:
 
   nodea.dev.pokt:
-    image: poktnetwork/pocket-core:RC-0.6.3-latest-local
+    image: poktnetwork/pocket-core:dev-local
     build:
       context: ${POCKET_CORE_REPO_PATH}
-      dockerfile: ${CWD}/docker/pokt-net/dev/Dockerfile
+      dockerfile: ${CWD}/docker/pokt-net/dev-tm/Dockerfile
+      args:
+        - POCKET_CORE_REPO_PATH=${POCKET_CORE_REPO_PATH}
+        - POCKET_NETWORK_TENDERMINT_PATH=${POCKET_NETWORK_TENDERMINT_PATH}
     command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
     env_file:
-      - ${CWD}/stacks/pokt-net/dev/.nodea.dev.env
+      - ${CWD}/stacks/pokt-net/dev-tm/.nodea.dev.env
     environment:
       - DEBUG=${DEBUG}
       - DEBUG_PORT=1234
@@ -23,23 +26,24 @@ services:
       - "46656"
       - "1234"
     volumes:
-      - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
+      - ${CWD}/docker/pokt-net/dev-tm/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
       - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
       - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
-      - ${CWD}/stacks/pokt-net/dev/config/config.nodea.dev.json:/home/app/.pocket/config/config.json
+      - ${CWD}/stacks/pokt-net/dev-tm/config/config.nodea.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodea.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+      - "${POCKET_NETWORK_TENDERMINT_PATH}:/go/src/github.com/pokt-network/tendermint"
     networks:
       - poktnet
 
   nodeb.dev.pokt:
-    image: poktnetwork/pocket-core:RC-0.6.3-latest-local
+    image: poktnetwork/pocket-core:dev-local
     build:
       context: ${POCKET_CORE_REPO_PATH}
-      dockerfile: ${CWD}/docker/pokt-net/dev/Dockerfile
+      dockerfile: ${CWD}/docker/pokt-net/dev-tm/Dockerfile
     command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
     env_file:
-      - ${CWD}/stacks/pokt-net/dev/.nodeb.dev.env
+      - ${CWD}/stacks/pokt-net/dev-tm/.nodeb.dev.env
     environment:
       - DEBUG=${DEBUG}
       - DEBUG_PORT=1235
@@ -53,23 +57,24 @@ services:
       - "46656"
       - "1235"
     volumes:
-      - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
+      - ${CWD}/docker/pokt-net/dev-tm/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
       - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
       - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
-      - ${CWD}/stacks/pokt-net/dev/config/config.nodeb.dev.json:/home/app/.pocket/config/config.json
+      - ${CWD}/stacks/pokt-net/dev-tm/config/config.nodeb.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodeb.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+      - "${POCKET_NETWORK_TENDERMINT_PATH}:/go/src/github.com/pokt-network/tendermint"
     networks:
       - poktnet
 
   nodec.dev.pokt:
-    image: poktnetwork/pocket-core:RC-0.6.3-latest-local
+    image: poktnetwork/pocket-core:dev-local
     build:
       context: ${POCKET_CORE_REPO_PATH}
-      dockerfile: ${CWD}/docker/pokt-net/dev/Dockerfile
+      dockerfile: ${CWD}/docker/pokt-net/dev-tm/Dockerfile
     command: "/usr/bin/expect /home/app/.pocket/local_command_dev.sh"
     env_file:
-      - ${CWD}/stacks/pokt-net/dev/.nodec.dev.env
+      - ${CWD}/stacks/pokt-net/dev-tm/.nodec.dev.env
     environment:
       - DEBUG=${DEBUG}
       - DEBUG_PORT=1236
@@ -83,12 +88,13 @@ services:
       - "46656"
       - "1236"
     volumes:
-      - ${CWD}/docker/pokt-net/dev/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
+      - ${CWD}/docker/pokt-net/dev-tm/local_command_dev.sh:/home/app/.pocket/local_command_dev.sh
       - ${CWD}/stacks/pokt-net/shared/chains.json:/home/app/.pocket/config/chains.json
       - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
-      - ${CWD}/stacks/pokt-net/dev/config/config.nodec.dev.json:/home/app/.pocket/config/config.json
+      - ${CWD}/stacks/pokt-net/dev-tm/config/config.nodec.dev.json:/home/app/.pocket/config/config.json
       - ${CWD}/data/pokt-net.nodec.pokt.dev:/home/app/.pocket/data
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+      - "${POCKET_NETWORK_TENDERMINT_PATH}:/go/src/github.com/pokt-network/tendermint"
     networks:
       - poktnet
 

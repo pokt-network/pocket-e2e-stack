@@ -6,10 +6,10 @@ then
   exit 1;
 fi
 
-/bin/bash $CWD/bin/copy-pokt-net-dev-scripts dev
+/bin/bash $CWD/bin/copy-pokt-net-dev-scripts dev-tm
 
 docker-compose \
-  -f $CWD/stacks/pokt-net/dev/stack.yml \
+  -f $CWD/stacks/pokt-net/dev-tm/stack.yml \
   --project-directory $CWD/ \
   up \
   --build \
