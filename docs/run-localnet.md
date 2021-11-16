@@ -1,12 +1,12 @@
 # Spinning up a local pocket blockchain
 
-# **General Requirements**
+## **General Requirements**
 
 - Docker
 - Git
 - Make (please upgrade your pre-installed Make version to `GNU Make 3.81`)
 
-# **Pocket Blockchain Step**
+## **Pocket Blockchain Step**
 
 The first thing we are going to do is clone the following repositories inside a Folder;
 
@@ -35,7 +35,7 @@ This will get a local pocket blockchain running, and you will be able to use the
 
 If you had any issues until this point, please contact me (CrisOG#5874 on discord) to help you & add the possible problem/solution to the doc.
 
-# Portal API Step
+## Portal API Step
 
 1. Let's move to `Pocket/portal-api` folder, and run `npm install`. 
 2. Create a `.tasks.env` and paste this:
@@ -87,7 +87,7 @@ npm start services:all:up
 
 Congrats! Now you have a local pocket blockchain, and a portal API for immediate local use.
 
-# Query local pocket blockchain
+## Query local pocket blockchain
 
 You can use any client you want to make requests. This is the base URL for calls.
 
