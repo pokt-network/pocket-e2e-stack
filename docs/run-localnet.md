@@ -82,7 +82,7 @@ networks:
 Once you have configured all of this, then you can:
 
 ```bash
-npm start services:all:up
+npm run services:all:up
 ```
 
 Congrats! Now you have a local pocket blockchain, and a portal API for immediate local use.
