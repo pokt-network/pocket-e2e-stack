@@ -46,7 +46,28 @@ You can find funded accounts to test under:
 ```
 Files named: `.nodea.dev.env` / `.nodeb.dev.env` / `.nodec.dev.env` where you can find private keys with balance.
 
-In case you want to add more accounts with balance, go to `pocket-e2e-stack/stacks/pokt-net/shared/genesis.json`, find `"type": "posmint/Account"` and add an entry.
+In case you want to add more accounts with balance:
+1. Go to `pocket-e2e-stack/stacks/pokt-net/shared/genesis.json`
+2. Find `"type": "posmint/Account"`.
+3. Add an entry:
+```javascript
+{
+          "type": "posmint/Account",
+          "value": {
+            "address": "4187e3aed3d9ce89aec2519636a599d42c36521a",
+            "coins": [
+              {
+                "denom": "upokt",
+                "amount": "1000000000000000000000"
+              }
+            ],
+            "public_key": {
+              "type": "crypto/ed25519_public_key",
+              "value": "50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113"
+            }
+          }
+        }
+```
 
 If you had any issues until this point, please contact me (CrisOG#5874 on discord) to help you & add the possible problem/solution to the doc.
 
@@ -147,7 +168,7 @@ If you want to ask for the balance for example,
 1. Add this path to the base url `/v1/query/balance`
 2. Put this in the body.
 
-```bash
+```javascript
 {
     "address": "4b54c7ef83273bfb8cfd212ce7266de72716604d",
     "height": 1
