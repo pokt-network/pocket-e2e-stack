@@ -52,21 +52,19 @@ In case you want to add more accounts with balance:
 3. Add an entry:
 ```javascript
 {
-          "type": "posmint/Account",
-          "value": {
-            "address": "4187e3aed3d9ce89aec2519636a599d42c36521a",
-            "coins": [
-              {
-                "denom": "upokt",
-                "amount": "1000000000000000000000"
-              }
-            ],
-            "public_key": {
-              "type": "crypto/ed25519_public_key",
-              "value": "50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113"
-            }
-          }
+    "type": "posmint/Account",
+    "value": {
+        "address": "4187e3aed3d9ce89aec2519636a599d42c36521a",
+        "coins": [{
+            "denom": "upokt",
+            "amount": "1000000000000000000000"
+        }],
+        "public_key": {
+            "type": "crypto/ed25519_public_key",
+            "value": "50952e091c442cc891b7238a902dcdb53b6a42ffb21e2678ebc5caad91cc9113"
         }
+    }
+}
 ```
 
 If you had any issues until this point, please contact me (CrisOG#5874 on discord) to help you & add the possible problem/solution to the doc.
