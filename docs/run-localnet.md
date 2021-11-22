@@ -33,6 +33,21 @@ bin/pkt-stack pokt-net dev up
 
 This will get a local pocket blockchain running, and you will be able to use the `pocket-cli` to query the local blockchain. 
 
+To take it down, just run:
+```bash
+bin/pkt-stack pokt-net dev down
+```
+
+IMPORTANT: If you are on Linux, you might experience issues with the containers volume permissions. The dockerfile uses a non-root user to run.
+
+You can find funded accounts to test under:
+```
+- pocket-e2e-stack/stacks/pokt-net/dev/
+```
+Files named: `.nodea.dev.env` / `.nodeb.dev.env` / `.nodec.dev.env` where you can find private keys with balance.
+
+In case you want to add more accounts with balance, go to `pocket-e2e-stack/stacks/pokt-net/shared/genesis.json`, find `"type": "posmint/Account"` and add an entry.
+
 If you had any issues until this point, please contact me (CrisOG#5874 on discord) to help you & add the possible problem/solution to the doc.
 
 ## Portal API Step
@@ -52,7 +67,7 @@ MONGO_INITDB_ROOT_PASSWORD=mongopassword
 MONGO_INITDB_DATABASE=gateway
 ```
 
-1. Create an `.env` file based on the template & update the following variables:
+1. Create an `.env` file based on the template & add/update the following variables:
 
 ```bash
 
@@ -61,6 +76,12 @@ MONGO_ENDPOINT=mongodb://mongouser:mongopassword@db:27017/gateway?authSource=adm
 
 DISPATCH_URL=http://nodea.dev.pokt:8081,http://nodea.dev.pokt:8081,http://nodea.dev.pokt:8081
 ALTRUISTS={"0001": "http://nodea.dev.pokt:8081"}
+
+AWS_ACCESS_KEY_ID=null
+AWS_SECRET_ACCESS_KEY=null
+AWS_REGION=null
+
+ARCHIVAL_CHAINS="0022,0028,0010,000A,000B,000C"
 ```
 
 1. Go to `stacks/local.yml` and find for this part of the code:
@@ -85,6 +106,16 @@ Once you have configured all of this, then you can:
 npm run services:all:up
 ```
 
+Right now, your DB is empty. So you will need to fill it with some data to start using the API.
+
+You will need a database dump to get the API running, ask us for this dump. It will be a zip with a folder called `dump` inside. Then, run this command:
+
+```bash
+mongorestore --uri "mongodb://mongouser:mongopassword@db:27017/gateway?authSource=admin" dump/
+```
+
+After a successful import process, you are ready to go.
+
 Congrats! Now you have a local pocket blockchain, and a portal API for immediate local use.
 
 ## Query local pocket blockchain
@@ -92,7 +123,13 @@ Congrats! Now you have a local pocket blockchain, and a portal API for immediate
 You can use any client you want to make requests. This is the base URL for calls.
 
 ```bash
-http://mainnet.localhost:3000/v1/5f3585a6673a2923d229867d
+http://mainnet.localhost:3000/v1/60676c9f7cbbfe002f0b9cbe
+```
+
+Note: you can also use load balancers from DB.
+
+```bash
+http://mainnet.localhost:3000/v1/lb/<LOAD_BALANCER_ID>
 ```
 
 If you are on a Mac, you will need to add the subdomains to `/etc/hosts`.
@@ -101,7 +138,7 @@ Example:
 127.0.0.1 localhost mainnet.localhost
 ```
 
-Note: `5f3585a6673a2923d229867d` is an application ID, you may or may not have this same application ID available to use, as this is fetched from the `portal-api` mongodb local instance (imported from the testnet pocket mongo db instance).
+Note: `60676c9f7cbbfe002f0b9cbe` is an application ID, you may or may not have this same application ID available to use, as this is fetched from the `portal-api` mongodb local instance (imported from the testnet pocket mongo db instance).
 
 If you get the `application id not found` error, please use a client for MongoDB to find an `applicationID` that you can use.
 
@@ -113,7 +150,7 @@ If you want to ask for the balance for example,
 ```bash
 {
     "address": "4b54c7ef83273bfb8cfd212ce7266de72716604d",
-    "height": 10
+    "height": 1
 }
 ```
 
