@@ -43,7 +43,8 @@ pokt-net-dev-tm-down:
 	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/dev-tm/down.sh
 pokt-net-dev-tm-config:
 	POCKET_NETWORK_TENDERMINT_PATH=$(POCKET_NETWORK_TENDERMINT_PATH) CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/dev-tm/config.sh
-
+pokt-net-dev-tm-cleanup:
+	cd $(POCKET_NETWORK_TENDERMINT_PATH) && git checkout -- go.mod && cd $(POCKET_CORE_REPO_PATH) && git checkout -- go.mod && cd $(CWD)
 
 # pocket foundation stack
 pokt-fdt-prod-config:
