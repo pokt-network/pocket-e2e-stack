@@ -30,4 +30,3 @@ cp go.mod.local go.mod
 go mod download
 echo "Done preparing tendermint, success!"
 cd ../
-exit 0;
