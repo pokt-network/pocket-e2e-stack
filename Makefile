@@ -30,14 +30,12 @@ pokt-net-prod-local-down:
 # Using locally built dev image
 pokt-net-dev-config:
 	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/dev/config.sh
-
 pokt-net-dev-up:
 	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) DEBUG=$(DEBUG) sh ${CWD}/stacks/pokt-net/dev/up.sh
 pokt-net-dev-down:
 	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/dev/down.sh
 
-
-#single node for quick remote rpc queries:
+# Single node for quick remote rpc queries:
 pokt-net-rpc-up:
 	POCKET_NETWORK_TENDERMINT_PATH=$(POCKET_NETWORK_TENDERMINT_PATH) CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) DEBUG=$(DEBUG) sh ${CWD}/stacks/pokt-net/rpc/up.sh
 pokt-net-rpc-down:
@@ -45,6 +43,23 @@ pokt-net-rpc-down:
 pokt-net-rpc-config:
 	POCKET_NETWORK_TENDERMINT_PATH=$(POCKET_NETWORK_TENDERMINT_PATH) CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/rpc/config.sh
 
+## PNI's playground
+pokt-net-playground-up:
+	POCKET_NETWORK_TENDERMINT_PATH=$(POCKET_NETWORK_TENDERMINT_PATH) CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) DEBUG=$(DEBUG) sh ${CWD}/stacks/pokt-net/playground/up.sh
+pokt-net-playground-down:
+	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/playground/down.sh
+pokt-net-playground-config:
+	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/playground/config.sh
+pokt-net-playground-cleanup:
+	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/playground/cleanup.sh
+
+## PNI's playground
+pokt-net-scaffold-up:
+	POCKET_NETWORK_TENDERMINT_PATH=$(POCKET_NETWORK_TENDERMINT_PATH) CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) DEBUG=$(DEBUG) sh ${CWD}/stacks/pokt-net/scaffold/up.sh
+pokt-net-scaffold-down:
+	CWD=$(CWD) POCKET_CORE_REPO_PATH=$(POCKET_CORE_REPO_PATH) sh ${CWD}/stacks/pokt-net/scaffold/down.sh
+pokt-net-scaffold-cleanup:
+	CWD=$(CWD) sh $(CWD)/stacks/pokt-net/scaffold/cleanup.sh
 
 # PNI tendermint development stack.
 pokt-net-dev-tm-up:

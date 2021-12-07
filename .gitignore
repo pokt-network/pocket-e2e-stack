@@ -1,7 +1,8 @@
 .env
+.playground.env
 .DS_Store
 data/*
 workspace.code-workspace
 *.swp*
 chains.local.json
-
+stacks/pokt-playground/*
