@@ -21,6 +21,18 @@ To run the portal-api alongside the wallet/explorer against the 5 node setup, ru
 $ bin/pkt-stack pokt-fdt prod-local up
 ```
 
+<h2 align="center">Dependencies</h2>
+
+In order to run this tool, you first need to clone the following repositories:
+
+- [portal-api](https://github.com/pokt-foundation/portal-api)
+
+- [pocket-core](https://github.com/pokt-network/pocket-core)
+
+- [pocket-js](https://github.com/pokt-network/pocket-js)
+
+By default, the repositories are expected to be in the same directory as the E2E stack. If they're not, you can configure their location in a `.env` file as detailed below.
+
 <h2 align="center">How to use</h2>
 
 ```bash
@@ -45,28 +57,25 @@ Available actions:
 - down: _Spins down the stack_
 - config: _Prints out the resulting docker compose config file_
 
-### Launching the pocket foundation stack
+## Launching the pocket foundation stack
 
 ### 1. Properly configure the gateway
 
-Make sure you are on the `dev/make-use-locally` branch on the gateway repository.
+Make sure you follow the proper instructions to replicate the production database locally (_check the [portal-api](https://github.com/pokt-foundation/portal-api) README.md_)
 
-Make sure you follow the proper instructions to replicate the production database locally (_check the gateway README.md_)
+Once you have properly setup the `portal-api` database with production data, add a new entry in the "Applications" collection in the gateways database with the values located in: `pocket-e2e-stack/assets/mongo-db-app.json`
 
-Once you have properly setup the gateway database with production data, add a new entry in the "applications" collection in the gateways database with the values located in `config/mongo-db-app.json`
+Then, make sure you add the blockchains you are concerned with to the `Blockchains` collection and you have added them to the chains.json in `config/chains.json` in this project.
 
-Then, make sure you add the blockchains you are concerned with to the `Blockchains` collection as you have added them to the chains.json in `config/chains.json` in this project.
-
-When you are ready, create a `.env` file at the root of this repo with the following values:
-(_make sure the paths exist on your machine_)
+Run `cp .env.template .env` and update the file locally, if necessary.
 
 ```
-GATEWAY_REPO_PATH=../gateway
-POCKETJS_REPO_PATH=../client
-POCKET_CORE_REPO_PATH=../core
+GATEWAY_REPO_PATH=../portal-api
+POCKETJS_REPO_PATH=../pocket-js
+POCKET_CORE_REPO_PATH=../pocket-core
 ```
 
-You can run `cp .env.template .env` and update the file locally.
+(_These are the default locations assuming you have cloned all the repos to one folder, but update the `.env` if you have cloned to the repos to another location._)
 
 ### 2. Bring the pocket foundation stack up
 
