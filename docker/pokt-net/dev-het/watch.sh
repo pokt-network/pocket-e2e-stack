@@ -23,7 +23,7 @@ DEBUG_COMMAND() {
   $POCKET_ROOT/prepare-tendermint.sh;
   cd $POCKET_PATH;
 
-  dlv_file_name="ouput_${POCKET_ADDRESS}.dlv";
+  dlv_file_name="output_${POCKET_ADDRESS}.dlv";
   touch ${dlv_file_name};
 
   echo 'starting pocket with dlv...';

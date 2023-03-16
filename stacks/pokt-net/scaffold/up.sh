@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 create_data_folder() {
   mkdir -p $1/data/
@@ -22,17 +22,16 @@ cp $CWD/.playground.env $CWD/playground/.env
 cp $CWD/stacks/pokt-net/shared/genesis.json $CWD/playground/templates/genesis.json
 cp $CWD/stacks/pokt-net/shared/chains.local.json $CWD/playground/templates/chains.json
 
-nodes=$(ls $CWD/stacks/pokt-playground | grep node | awk '{print $1}')
-paths=($(echo $nodes | tr " " "\n"))
-
-echo "Creating data folders for the generated nodes..."
-create_data_folders_for_nodes $paths
-
 docker-compose \
   -f $CWD/stacks/pokt-net/scaffold/stack.yml \
   --project-directory $CWD/ \
   up \
   --build \
   --force-recreate
+
+echo "Creating data folders for the generated nodes..."
+nodes=$(ls $CWD/stacks/pokt-playground | grep node | awk '{print $1}')
+paths=($(echo $nodes | tr " " "\n"))
+create_data_folders_for_nodes $paths
 
 echo 'Done';

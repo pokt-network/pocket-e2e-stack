@@ -2,7 +2,7 @@
 # from the host for local development and hot reloading.
 
 # Dynamically pull Go-lang version for the image
-ARG GOLANG_IMAGE_VERSION=golang:1.16.2-alpine3.13
+ARG GOLANG_IMAGE_VERSION=golang:1.18.2-alpine
 
 # First build step to build the app binary
 FROM ${GOLANG_IMAGE_VERSION} AS builder
@@ -69,7 +69,7 @@ COPY ${POCKET_E2E_STACK_RELATIVE_PATH}/go.mod.tendermint $POCKET_ROOT/go.mod.ten
 RUN chmod 654 $POCKET_ROOT/go.mod.tendermint
 
 # Install reflex and dlv
-RUN go get github.com/cespare/reflex
-RUN go get github.com/go-delve/delve/cmd/dlv@latest
+RUN go install github.com/cespare/reflex@latest
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
 
 ENTRYPOINT ["/home/app/entrypoint.sh"]

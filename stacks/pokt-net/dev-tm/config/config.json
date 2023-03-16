@@ -97,18 +97,18 @@
     "Consensus": {
       "RootDir": "/home/app/.pocket",
       "WalPath": "data/cs.wal/wal",
-      "TimeoutPropose": 30000000000,
-      "TimeoutProposeDelta": 10000000000,
-      "TimeoutPrevote": 30000000000,
-      "TimeoutPrevoteDelta": 10000000000,
-      "TimeoutPrecommit": 30000000000,
-      "TimeoutPrecommitDelta": 10000000000,
-      "TimeoutCommit": 100000000000,
+      "TimeoutPropose": 300000000,
+      "TimeoutProposeDelta": 100000000,
+      "TimeoutPrevote": 300000000,
+      "TimeoutPrevoteDelta": 100000000,
+      "TimeoutPrecommit": 300000000,
+      "TimeoutPrecommitDelta": 100000000,
+      "TimeoutCommit": 1000000000,
       "SkipTimeoutCommit": false,
       "CreateEmptyBlocks": true,
-      "CreateEmptyBlocksInterval": 100000000000,
-      "PeerGossipSleepDuration": 100000000,
-      "PeerQueryMaj23SleepDuration": 2000000000
+      "CreateEmptyBlocksInterval": 1000004269,
+      "PeerGossipSleepDuration": 1000000,
+      "PeerQueryMaj23SleepDuration": 20000000
     },
     "TxIndex": {
       "Indexer": "kv",

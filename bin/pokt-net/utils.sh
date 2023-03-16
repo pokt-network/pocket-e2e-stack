@@ -43,12 +43,12 @@ function check_required_env_vars() {
 
 # TODO(olshansky): this is a bit hacky so consider refactoring.
 function update_chains_json() {
-  if [[ ! -z ${PNF_USERNAME} && ! -z ${PNF_PASSWORD} ]]; then
-    echo "PNF_USERNAME and PNF_PASSWORD are set so we are going update chains.json"
-    sed "s/\"username\": \"\${PNF_USERNAME}\"/\"username\": \"${PNF_USERNAME}\"/g" stacks/pokt-net/shared/chains.template.json > stacks/pokt-net/shared/chains.local.json
-    sed -i '' "s/\"password\": \"\${PNF_PASSWORD}\"/\"password\": \"${PNF_PASSWORD}\"/g" stacks/pokt-net/shared/chains.local.json
+  if [[ ! -z ${ETH_ALTRUIST} && ! -z ${POLY_ALTRUIST} ]]; then
+    echo "ETH_ALTRUIST and POLY_ALTRUIST are set so we are going update chains.json"
+    sed "s#http://user:pass@eth.altruist.com#${ETH_ALTRUIST}#g" stacks/pokt-net/shared/chains.template.json > stacks/pokt-net/shared/chains.local.json
+    sed -i '' "s#http://user:pass@poly.altruist.com#${POLY_ALTRUIST}#g" stacks/pokt-net/shared/chains.local.json
   else
-    echo "PNF_USERNAME and PNF_PASSWORD are not set so we are not going update chains.json"
+    echo "ETH_ALTRUIST and POLY_ALTRUIST are not set so we are not going update chains.json"
     cp stacks/pokt-net/shared/chains.template.json > stacks/pokt-net/shared/chains.local.json
   fi
 }

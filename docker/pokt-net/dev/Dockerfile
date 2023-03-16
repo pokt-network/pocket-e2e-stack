@@ -3,7 +3,7 @@
 # is part of the $PATH
 
 # Dynamically pull Go-lang version for the image
-ARG GOLANG_IMAGE_VERSION=golang:1.16.2-alpine3.13
+ARG GOLANG_IMAGE_VERSION=golang:1.18.2-alpine
 
 # First build step to build the app binary
 FROM ${GOLANG_IMAGE_VERSION} AS builder
@@ -60,8 +60,8 @@ RUN chown -R app /home/app/.pocket
 RUN go build -tags cleveldb -o ${GOBIN}/bin/pocket ./app/cmd/pocket_core/main.go
 
 # install reflex and dlv
-RUN go get github.com/cespare/reflex
-RUN go get github.com/go-delve/delve/cmd/dlv@latest
+RUN go install github.com/cespare/reflex@latest
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
 
 USER app
 ENTRYPOINT ["/home/app/entrypoint.sh"]

@@ -4,7 +4,7 @@ This is a "hardcoded" pre-scaffolded version of `playground/dev-tm` that was cre
 
 This branch in the pocket-e2e-stack is intentionally far from perfect and is only meant to be submitted to mainline as a stop gap solution to enable the protocol team to effectively debug v0 while building a good foundation for v1.
 
-### Resources
+## Resources
 
 - Driven by [this crisis](https://www.notion.so/2022-04-15-a57d7f3cf9404757834a40261464b77c).
 - Based off [this presentation](https://docs.google.com/presentation/d/1mk0XogopENCI_4WXXvSYm1_DG8EhRLIpwpZQNIA5vqM/edit#slide=id.g1067626419f_0_48).
@@ -45,8 +45,9 @@ d=$(dirname $(pwd))
 
 cp .env.template .env
 sed -i -e "s#POCKET_CORE_REPOS_PATH=.\/#POCKET_CORE_REPOS_PATH=${d}#g" .env
-sed -i -e "s/# PNF_USERNAME=/PNF_USERNAME=pnfblockchains/g" .env
-sed -i -e "s/# PNF_PASSWORD=/PNF_PASSWORD=UEnJdyW23ch92rf/g" .env
+
+sed -i -e "s#http://user:pass@eth.altruist.com#http://actual_user:actual_pass@eth.actual_altruist.com#g" .env
+sed -i -e "s#http://user:pass@poly.altruist.com#http://actual_user:actual_pass@poly.actual_altruist.com#g" .env
 
 cp stacks/pokt-playground-het/.env.template stacks/pokt-playground-het/.env
 sed -i -e "s#POCKET_CORE_REPOS_PATH=#POCKET_CORE_REPOS_PATH=${d}#g" stacks/pokt-playground-het/.env
@@ -97,4 +98,4 @@ docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi $(d
 
 ## Updating Code
 
-@Andrew Nguyen TODO
+@Andrew Nguyen TODO: Never

@@ -1,8 +1,8 @@
 version: "3.5"
 
 services:
-  node1.pokt:
-    container_name: node1.pokt
+  node1.dev.pokt:
+    container_name: node1.dev.pokt
     image: poktnetwork/pocket-core:dev-tm-local
     build:
       context: ${POCKET_CORE_REPOS_PATH}
@@ -26,7 +26,7 @@ services:
       - "26656"
       - "26657"
       - "46656"
-      - "1234"
+      # - "1234"
     volumes:
       - ${CWD}/data/pokt-net.node1.data:/home/app/.pocket/data
       - ${CWD}/stacks/pokt-net/dev-tm/config/config.json:/home/app/.pocket/config/config.json
@@ -37,8 +37,8 @@ services:
     networks:
       - poktnet
 
-  node2.pokt:
-    container_name: node2.pokt
+  node2.dev.pokt:
+    container_name: node2.dev.pokt
     image: poktnetwork/pocket-core:dev-tm-local
     build:
       context: ${POCKET_CORE_REPOS_PATH}
@@ -73,8 +73,8 @@ services:
     networks:
       - poktnet
 
-  node3.pokt:
-    container_name: node3.pokt
+  node3.dev.pokt:
+    container_name: node3.dev.pokt
     image: poktnetwork/pocket-core:dev-tm-local
     build:
       context: ${POCKET_CORE_REPOS_PATH}
@@ -109,8 +109,8 @@ services:
     networks:
       - poktnet
 
-  node4.pokt:
-    container_name: node4.pokt
+  node4.dev.pokt:
+    container_name: node4.dev.pokt
     image: poktnetwork/pocket-core:dev-tm-local
     build:
       context: ${POCKET_CORE_REPOS_PATH}

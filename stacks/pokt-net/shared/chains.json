@@ -1,6 +1,12 @@
 [
   {
-    "id": "1111",
-    "url": "http://ipfs:5001"
+    "name": "eth-mainnet",
+    "id": "0021",
+    "url": "ETH_ALTRUIST"
+  },
+  {
+    "name": "poly-mainnet",
+    "id": "0009",
+    "url": "POLY_ALTRUIST"
   }
 ]

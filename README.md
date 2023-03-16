@@ -100,7 +100,7 @@ $ bin/pkt-stack pokt-fdt ENV down
 
 ### Launching the pocket network stack
 
-##### 1. Launch the stack in production mode by using the dockerhub official pocket core production image (_currently at RC-0.6.3_)
+##### 1. Launch the stack in production mode by using the dockerhub official pocket core production image (_currently at RC-0.9.2_)
 
 - dev: a local live development version with hot reloading
 - prod: pulls the official production image

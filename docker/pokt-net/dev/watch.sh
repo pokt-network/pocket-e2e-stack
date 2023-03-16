@@ -27,7 +27,7 @@ DEBUG_COMMAND() {
 
   cd ${POCKET_PATH};
 
-  dlv_file_name="ouput_${POCKET_ADDRESS}.dlv";
+  dlv_file_name="output_${POCKET_ADDRESS}.dlv";
   touch ${dlv_file_name};
 
   dlv debug ${POCKET_PATH}/app/cmd/pocket_core/main.go \

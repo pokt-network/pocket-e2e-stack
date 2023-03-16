@@ -3,7 +3,7 @@
 # is part of the $PATH
 
 # Dynamically pull Go-lang version for the image
-ARG GOLANG_IMAGE_VERSION=golang:1.13-alpine
+ARG GOLANG_IMAGE_VERSION=golang:1.18.2-alpine
 
 # First build step to build the app binary
 FROM ${GOLANG_IMAGE_VERSION} AS builder
@@ -30,7 +30,7 @@ WORKDIR $POCKET_PATH
 
 # Creating the BRANCH_NAME variable
 #ARG BRANCH_NAME="experimental/tm33.7"
-ARG BRANCH_NAME="RC-0.6.3"
+ARG BRANCH_NAME="RC-0.9.2"
 
 # Copying deps sh to tmp folder
 COPY deps.sh /tmp/

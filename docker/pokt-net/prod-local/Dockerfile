@@ -3,7 +3,7 @@
 # is part of the $PATH
 
 # Dynamically pull Go-lang version for the image
-ARG GOLANG_IMAGE_VERSION=golang:1.16.2-alpine3.13
+ARG GOLANG_IMAGE_VERSION=golang:1.18.2-alpine
 
 # First build step to build the app binary
 FROM ${GOLANG_IMAGE_VERSION} AS builder
@@ -54,7 +54,7 @@ RUN mkdir -p /home/app/.pocket/config
 RUN chown -R app /home/app/.pocket
 
 # install reflexo
-RUN go get github.com/cespare/reflex
+RUN go install github.com/cespare/reflex@latest
 
 # Install project dependencies and builds the binary
 RUN go build -tags cleveldb -o ${GOBIN}/bin/pocket ./app/cmd/pocket_core/main.go

@@ -22,7 +22,7 @@ DEBUG_COMMAND() {
   $POCKET_ROOT/prepare-tendermint.sh;
   cd $POCKET_PATH;
 
-  dlv_file_name="ouput_${POCKET_ADDRESS}.dlv";
+  dlv_file_name="output_${POCKET_ADDRESS}.dlv";
   touch ${dlv_file_name};
 
   echo 'starting pocket with dlv...';
@@ -49,13 +49,13 @@ NO_DEBUG_COMMAND() {
 export -f DEBUG_COMMAND
 export -f NO_DEBUG_COMMAND
 
-command=""
-if [ $DEBUG==1 ];
-then
-  command="DEBUG_COMMAND"
-else
-  command="NO_DEBUG_COMMAND"
-fi;
+# command=""
+# if [ $DEBUG==1 ];
+# then
+#   command="DEBUG_COMMAND"
+# else
+command="NO_DEBUG_COMMAND"
+# fi;
 
 echo "About to run the following command with reflex: $command"
 

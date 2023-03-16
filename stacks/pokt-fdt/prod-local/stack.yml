@@ -76,20 +76,19 @@ services:
     networks:
       - poktnet
 
-
-  node1.pokt:
+  node1.dev.pokt:
     networks:
       - poktnet
 
-  node2.pokt:
+  node2.dev.pokt:
     networks:
       - poktnet
 
-  node3.pokt:
+  node3.dev.pokt:
     networks:
       - poktnet
 
-  node4.pokt:
+  node4.dev.pokt:
     networks:
       - poktnet
 
