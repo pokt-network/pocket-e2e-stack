@@ -15,25 +15,26 @@ Pocket/
 -- [portal-api](https://github.com/pokt-foundation/portal-api)
 -- [pocket-core](https://github.com/pokt-network/pocket-core)
 -- [pocket-js](https://github.com/pokt-network/pocket-js)
--- [pocket-e2e-stack](https://github.com/pokt-foundation/pocket-e2e-stack)
+-- [pocket-e2e-stack](https://github.com/pokt-network/pocket-e2e-stack)
 ```
 
 Note: please create a docker bridge network called `pocket`, this one is going to be used for everything.
 
 1. Let's navigate to `pocket-e2e-stack` first. This repository was created to make it easy to start a development environment on a local machine for all of the Pocket products. For now, we are only focusing on getting a pocket blockchain running.
 2. Checkout to `jail-fast` branch. This configuration will have a really fast jailing/unstaking periods, so it's easier to test. These can be adjusted later.
-    
-    Note: please use this branch even if you pretend to use a different configuration, as this one uses the `pocket` docker network & configured `.env`. The main branch creates a new network with docker-compose, and we will be running the `portal-api` separately.
-    
+
+   Note: please use this branch even if you pretend to use a different configuration, as this one uses the `pocket` docker network & configured `.env`. The main branch creates a new network with docker-compose, and we will be running the `portal-api` separately.
+
 3. Inside `pocket-e2e-stack`, run this command:
 
 ```bash
 bin/pkt-stack pokt-net dev up
 ```
 
-This will get a local pocket blockchain running, and you will be able to use the `pocket-cli` to query the local blockchain. 
+This will get a local pocket blockchain running, and you will be able to use the `pocket-cli` to query the local blockchain.
 
 To take it down, just run:
+
 ```bash
 bin/pkt-stack pokt-net dev down
 ```
@@ -41,15 +42,19 @@ bin/pkt-stack pokt-net dev down
 IMPORTANT: If you are on Linux, you might experience issues with the containers volume permissions. The dockerfile uses a non-root user to run.
 
 You can find funded accounts to test under:
+
 ```
 - pocket-e2e-stack/stacks/pokt-net/dev/
 ```
+
 Files named: `.nodea.dev.env` / `.nodeb.dev.env` / `.nodec.dev.env` where you can find private keys with balance.
 
 In case you want to add more accounts with balance:
+
 1. Go to `pocket-e2e-stack/stacks/pokt-net/shared/genesis.json`
 2. Find `"type": "posmint/Account"`.
 3. Add an entry:
+
 ```javascript
 {
     "type": "posmint/Account",
@@ -71,7 +76,7 @@ If you had any issues until this point, please contact me (CrisOG#5874 on discor
 
 ## Portal API Step
 
-1. Let's move to `Pocket/portal-api` folder, and run `npm install`. 
+1. Let's move to `Pocket/portal-api` folder, and run `npm install`.
 2. Create a `.tasks.env` and paste this:
 
 ```bash
@@ -153,6 +158,7 @@ http://mainnet.localhost:3000/v1/lb/<LOAD_BALANCER_ID>
 
 If you are on a Mac, you will need to add the subdomains to `/etc/hosts`.
 Example:
+
 ```
 127.0.0.1 localhost mainnet.localhost
 ```

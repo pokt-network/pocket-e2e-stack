@@ -29,7 +29,7 @@ mkdir red-crisis-localnet && cd red-crisis-localnet
 git clone git@github.com:pokt-network/pocket-core.git
 git clone git@github.com:pokt-network/tendermint.git
 git clone git@github.com:pokt-network/tx-bot.git
-git clone git@github.com:pokt-foundation/pocket-e2e-stack.git
+git clone git@github.com:pokt-network/pocket-e2e-stack.git
 
 ### Temp until merged to main###
 git checkout -b crisis/red/holy/hack remotes/origin/crisis/red/holy/hack
