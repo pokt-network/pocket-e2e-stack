@@ -1,28 +1,25 @@
 #!/usr/env/bin bash
 
-if [ -z "$CWD" ];
-then
-  echo "CWD  env var is required, none was exported";
-  exit 1;
-fi;
-
-if [ -z "$POCKET_CORE_REPO_PATH" ];
-then
-  echo "POCKET_CORE_REPO_PATH env var is required, none was exported";
-  exit 1;
-fi;
-
-if [ -z $1 ];
-then
-  echo "Missing first argument: env"
-  exit 1;
+if [ -z "$CWD" ]; then
+  echo "CWD  env var is required, none was exported"
+  exit 1
 fi
 
-if [ $1 == "dev-tm" ];
-then
+if [ -z "$POCKET_CORE_REPO_PATH" ]; then
+  echo "POCKET_CORE_REPO_PATH env var is required, none was exported"
+  exit 1
+fi
+
+if [ -z $1 ]; then
+  echo "Missing first argument: env"
+  exit 1
+fi
+
+if [ $1 == "dev-tm" ]; then
+  echo "Using the dev-tm env"
   SCRIPTS=(
-      "$CWD/docker/pokt-net/$1/install-deps.sh" "$CWD/docker/pokt-net/$1/watch.sh" "$CWD/docker/pokt-net/$1/entrypoint-dev.sh" "$CWD/docker/pokt-net/$1/command.sh" "$CWD/docker/pokt-net/$1/go.mod.local" "$CWD/docker/pokt-net/$1/prepare-tendermint.sh" "$CWD/docker/pokt-net/$1/go.mod.tendermint"
-    )
+    "$CWD/docker/pokt-net/$1/install-deps.sh" "$CWD/docker/pokt-net/$1/watch.sh" "$CWD/docker/pokt-net/$1/entrypoint-dev.sh" "$CWD/docker/pokt-net/$1/command.sh" "$CWD/docker/pokt-net/$1/go.mod.local" "$CWD/docker/pokt-net/$1/prepare-tendermint.sh" "$CWD/docker/pokt-net/$1/go.mod.tendermint"
+  )
 else
   SCRIPTS=(
     "$CWD/docker/pokt-net/$1/install-deps.sh" "$CWD/docker/pokt-net/$1/watch.sh" "$CWD/docker/pokt-net/$1/entrypoint-dev.sh" "$CWD/docker/pokt-net/$1/command.sh"
@@ -30,8 +27,7 @@ else
 fi
 
 PRINT_SCRIPTS() {
-  for i in "${!SCRIPTS[@]}"
-  do
+  for i in "${!SCRIPTS[@]}"; do
     echo "- ${SCRIPTS[i]}"
   done
 }
@@ -43,19 +39,16 @@ $PRINTED_SCRIPTS
 
   would you like to continue [Y/n]: " continueScript
 
-if [ "$continueScript" = "n" ] || [ "$continueScript" = "N" ]
-then
-  echo "Not copying";
+if [ "$continueScript" = "n" ] || [ "$continueScript" = "N" ]; then
+  echo "Not copying"
 else
-  for i in "${!SCRIPTS[@]}"
-  do
-    echo "Copying... ${SCRIPTS[i]}";
-    cp ${SCRIPTS[i]} $POCKET_CORE_REPO_PATH;
-    if [ $? -eq 1 ]
-    then
-      echo "Failed to copy ${SCRIPTS[i]} to $POCKET_CORE_REPO_PATH...";
+  for i in "${!SCRIPTS[@]}"; do
+    echo "Copying... ${SCRIPTS[i]}"
+    cp ${SCRIPTS[i]} $POCKET_CORE_REPO_PATH
+    if [ $? -eq 1 ]; then
+      echo "Failed to copy ${SCRIPTS[i]} to $POCKET_CORE_REPO_PATH..."
     else
-      echo "Successfully copied ${SCRIPTS[i]} to $POCKET_CORE_REPO_PATH...";
-    fi;
-  done;
-fi;
+      echo "Successfully copied ${SCRIPTS[i]} to $POCKET_CORE_REPO_PATH..."
+    fi
+  done
+fi
