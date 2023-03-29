@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-if [ -z $CWD ];
-then
-  echo "Expected CWD env var, nothing was exported";
-  exit 1;
+if [ -z $CWD ]; then
+  echo "Expected CWD env var, nothing was exported"
+  exit 1
 fi
 
 export POCKET_CORE_REPOS_PATH=$POCKET_CORE_REPOS_PATH

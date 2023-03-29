@@ -33,7 +33,11 @@ services:
       - ${CWD}/stacks/pokt-net/shared/chains.local.json:/home/app/.pocket/config/chains.json
       - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+      - "/dev/null:/go/src/github.com/pokt-network/pocket-core/go.mod"
+      - "/dev/null:/go/src/github.com/pokt-network/pocket-core/vendor"
       - "${POCKET_NETWORK_TENDERMINT_PATH}:/go/src/github.com/pokt-network/tendermint"
+      - "/dev/null:/go/src/github.com/pokt-network/tendermint/go.mod"
+      - "/dev/null:/go/src/github.com/pokt-network/tendermint/vendor"
     networks:
       - poktnet
 
@@ -69,7 +73,11 @@ services:
       - ${CWD}/stacks/pokt-net/shared/chains.local.json:/home/app/.pocket/config/chains.json
       - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+      - "/dev/null:/go/src/github.com/pokt-network/pocket-core/go.mod"
+      - "/dev/null:/go/src/github.com/pokt-network/pocket-core/vendor"
       - "${POCKET_NETWORK_TENDERMINT_PATH}:/go/src/github.com/pokt-network/tendermint"
+      - "/dev/null:/go/src/github.com/pokt-network/tendermint/go.mod"
+      - "/dev/null:/go/src/github.com/pokt-network/tendermint/vendor"
     networks:
       - poktnet
 
@@ -105,7 +113,11 @@ services:
       - ${CWD}/stacks/pokt-net/shared/chains.local.json:/home/app/.pocket/config/chains.json
       - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+      - "/dev/null:/go/src/github.com/pokt-network/pocket-core/go.mod"
+      - "/dev/null:/go/src/github.com/pokt-network/pocket-core/vendor"
       - "${POCKET_NETWORK_TENDERMINT_PATH}:/go/src/github.com/pokt-network/tendermint"
+      - "/dev/null:/go/src/github.com/pokt-network/tendermint/go.mod"
+      - "/dev/null:/go/src/github.com/pokt-network/tendermint/vendor"
     networks:
       - poktnet
 
@@ -141,7 +153,11 @@ services:
       - ${CWD}/stacks/pokt-net/shared/chains.local.json:/home/app/.pocket/config/chains.json
       - ${CWD}/stacks/pokt-net/shared/genesis.json:/home/app/.pocket/config/genesis.json
       - "${POCKET_CORE_REPO_PATH}:/go/src/github.com/pokt-network/pocket-core"
+      - "/dev/null:/go/src/github.com/pokt-network/pocket-core/go.mod"
+      - "/dev/null:/go/src/github.com/pokt-network/pocket-core/vendor"
       - "${POCKET_NETWORK_TENDERMINT_PATH}:/go/src/github.com/pokt-network/tendermint"
+      - "/dev/null:/go/src/github.com/pokt-network/tendermint/go.mod"
+      - "/dev/null:/go/src/github.com/pokt-network/tendermint/vendor"
     networks:
       - poktnet
 
