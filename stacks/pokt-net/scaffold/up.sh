@@ -1,17 +1,5 @@
 #!/usr/bin/bash
 
-create_data_folder() {
-  mkdir -p $1/data/
-}
-
-create_data_folders_for_nodes() {
-  paths=$1
-  for i in "${!paths[@]}"
-  do
-    create_data_folder $CWD/stacks/pokt-playground/${paths[i]}
-  done
-}
-
 export POCKET_CORE_REPOS_PATH=$POCKET_CORE_REPOS_PATH
 export POCKET_E2E_STACK_RELATIVE_PATH=$(basename -a $POCKET_E2E_STACK_PATH)
 
@@ -28,10 +16,5 @@ docker-compose \
   up \
   --build \
   --force-recreate
-
-echo "Creating data folders for the generated nodes..."
-nodes=$(ls $CWD/stacks/pokt-playground | grep node | awk '{print $1}')
-paths=($(echo $nodes | tr " " "\n"))
-create_data_folders_for_nodes $paths
 
 echo 'Done';

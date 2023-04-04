@@ -46,7 +46,11 @@ function update_chains_json() {
   if [[ ! -z ${ETH_ALTRUIST} && ! -z ${POLY_ALTRUIST} ]]; then
     echo "ETH_ALTRUIST and POLY_ALTRUIST are set so we are going update chains.json"
     sed "s#http://user:pass@eth.altruist.com#${ETH_ALTRUIST}#g" stacks/pokt-net/shared/chains.template.json > stacks/pokt-net/shared/chains.local.json
-    sed -i '' "s#http://user:pass@poly.altruist.com#${POLY_ALTRUIST}#g" stacks/pokt-net/shared/chains.local.json
+    if [[ $(uname) == "Darwin" ]]; then
+      sed -i '' "s#http://user:pass@poly.altruist.com#${POLY_ALTRUIST}#g" stacks/pokt-net/shared/chains.local.json
+    else
+      sed -i "s#http://user:pass@poly.altruist.com#${POLY_ALTRUIST}#g" stacks/pokt-net/shared/chains.local.json
+    fi
   else
     echo "ETH_ALTRUIST and POLY_ALTRUIST are not set so we are not going update chains.json"
     cp stacks/pokt-net/shared/chains.template.json > stacks/pokt-net/shared/chains.local.json

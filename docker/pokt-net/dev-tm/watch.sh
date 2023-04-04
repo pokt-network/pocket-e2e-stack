@@ -5,9 +5,9 @@ echo "Starting watch.sh..."
 echo "POCKET_CORE_SEEDS: $POCKET_CORE_SEEDS";
 echo "POCKET_ADDRESS: $POCKET_ADDRESS";
 
-if [ -z $EXECOMMAND ]
+if [ -z "$EXECCOMMAND" ]
 then
-  echo "Expecting EXECOMMAND env var, none was exported.";
+  echo "Expecting EXECCOMMAND env var, none was exported.";
   export EXECCOMMAND="start --seeds $POCKET_CORE_SEEDS --keybase=false --datadir=/home/app/.pocket"
   echo "Exported $EXECCOMMAND as EXECCOMMAND";
 fi;

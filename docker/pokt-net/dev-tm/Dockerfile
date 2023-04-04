@@ -58,17 +58,21 @@ RUN mkdir -p /home/app/.pocket/config
 RUN chown -R app /home/app/.pocket
 RUN chown -R app /go
 
-# Build the pocket main binary using the mainline dependencies
+# Overwrite go.mod files for local development
+RUN sed -i 's|^replace github.com/tendermint/tendermint => .*$|replace github.com/tendermint/tendermint => '$TENDERMINT_PATH'|' $TENDERMINT_PATH/go.mod
+RUN cp $TENDERMINT_PATH/go.mod $POCKET_ROOT/go.mod.tendermint
+RUN sed -i 's|^replace github.com/tendermint/tendermint => .*$|replace github.com/tendermint/tendermint => '$TENDERMINT_PATH'|' $POCKET_PATH/go.mod
+RUN cp $POCKET_PATH/go.mod $POCKET_ROOT/go.mod.core
+
+# Clear vendor directory to reset the previous run
+RUN rm -rf $TENDERMINT_PATH/vendor
+RUN rm -rf $POCKET_PATH/vendor
+
+# Build main binaries using the mainline dependencies.
+RUN cd ${TENDERMINT_PATH} \
+	&& go build -o ${GOPATH}/bin/tendermint cmd/tendermint/main.go
 RUN cd ${POCKET_PATH} \
 	&& go build -tags cleveldb -o ${GOPATH}/bin/pocket app/cmd/pocket_core/main.go
-
-# Overwrite go.mod files for local development
-COPY ${POCKET_E2E_STACK_RELATIVE_PATH}/go.mod.local $POCKET_ROOT/go.mod.core
-RUN chmod 654 $POCKET_ROOT/go.mod.core
-
-# Overwrite go.mod files for local development
-COPY ${POCKET_E2E_STACK_RELATIVE_PATH}/go.mod.tendermint $POCKET_ROOT/go.mod.tendermint
-RUN chmod 654 $POCKET_ROOT/go.mod.tendermint
 
 # Install reflex and dlv
 RUN go install github.com/cespare/reflex@latest

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-rm -rf $CWD/stacks/pokt-playground
+sudo rm -rf $CWD/stacks/pokt-playground
