@@ -61,6 +61,7 @@ RUN chown -R app /go
 # Overwrite go.mod files for local development
 RUN sed -i 's|^replace github.com/tendermint/tendermint => .*$|replace github.com/tendermint/tendermint => '$TENDERMINT_PATH'|' $TENDERMINT_PATH/go.mod
 RUN cp $TENDERMINT_PATH/go.mod $POCKET_ROOT/go.mod.tendermint
+
 RUN sed -i 's|^replace github.com/tendermint/tendermint => .*$|replace github.com/tendermint/tendermint => '$TENDERMINT_PATH'|' $POCKET_PATH/go.mod
 RUN cp $POCKET_PATH/go.mod $POCKET_ROOT/go.mod.core
 
