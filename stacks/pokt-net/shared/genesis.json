@@ -30,7 +30,7 @@
     },
     "application": {
       "params": {
-        "unstaking_time": "1814400000000000",
+        "unstaking_time": "42000",
         "max_applications": "9223372036854775807",
         "app_stake_minimum": "1000000",
         "base_relays_per_pokt": "100",
@@ -164,7 +164,7 @@
     "pos": {
       "params": {
         "relays_to_tokens_multiplier": "1000",
-        "unstaking_time": "1814400000000000",
+        "unstaking_time": "42000",
         "max_validators": "5",
         "stake_denom": "upokt",
         "stake_minimum": "1000000",
