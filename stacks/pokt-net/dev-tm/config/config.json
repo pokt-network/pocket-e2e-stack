@@ -148,6 +148,7 @@
     "proof_prevalidation": false,
     "ctx_cache_size": 20,
     "abci_logging": false,
-    "show_relay_errors": true
+    "show_relay_errors": true,
+    "client_session_sync_allowance": 0
   }
 }
